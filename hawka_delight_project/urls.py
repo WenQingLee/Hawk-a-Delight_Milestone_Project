@@ -22,7 +22,7 @@ from restaurant_app.views import show_index, get_reviews, review_detail, create_
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index', show_index),
+    path('', show_index),
     path('reviews/', get_reviews),
     path("reviews/<pk>", review_detail),
     path("reviews/form/<pk>", create_edit_review),
