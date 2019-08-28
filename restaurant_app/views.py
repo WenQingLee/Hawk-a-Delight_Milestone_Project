@@ -5,12 +5,12 @@ from .forms import RecipeReviewForm
 
 # Create your views here.
 
-def show_index(request):
+def show_test(request):
     """
     Create a view that will show the homepage of the website
     and it will be rendered based on the "base.html" template
     """
-    return render(request, "index.html")
+    return render(request, "test.html")
   
 def get_reviews(request): 
     """

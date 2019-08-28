@@ -18,11 +18,13 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.views.static import serve
 from .settings import MEDIA_ROOT
-from restaurant_app.views import show_index, get_reviews, review_detail, create_edit_review
+from accounts_app.views import index
+from restaurant_app.views import show_test, get_reviews, review_detail, create_edit_review
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', show_index),
+    path('', index),
+    path('test/', show_test),
     path('reviews/', get_reviews),
     path("reviews/<pk>", review_detail),
     path("reviews/form/<pk>", create_edit_review),
