@@ -33,7 +33,7 @@ def review_detail(request, pk):
     review.save()
     return render(request, "reviewdetail.html", {"review":review})
     
-def create_or_edit_review(request, pk=None):
+def create_edit_review(request, pk=None):
     """
     Create a view that allows us to create or edit a review
     depending on whether the review id is none or not
