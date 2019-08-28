@@ -1,7 +1,8 @@
 from django import forms
-from .models import review
+from .models import Review
 
-class RestaurantReviewsForm(forms.ModelForm):
+# Form for user submitted reviews for recipes
+class RecipeReviewForm(forms.ModelForm):
     class Meta:
-        model = review
-        fields = ("content", "votes")
+        model = Review
+        fields = ("content", "votes", "image", "published_date")
