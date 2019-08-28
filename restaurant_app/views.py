@@ -10,7 +10,7 @@ def show_index(request):
     Create a view that will show the homepage of the website
     and it will be rendered based on the "base.html" template
     """
-    return render(request, "base.html")
+    return render(request, "index.html")
   
 def get_reviews(request): 
     """
