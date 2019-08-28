@@ -18,14 +18,15 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.views.static import serve
 from .settings import MEDIA_ROOT
-from accounts_app.views import index
+from accounts_app.views import index, logout
 from restaurant_app.views import show_test, get_reviews, review_detail, create_edit_review
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', index, name='index'),
+    path('logout/', logout, name='logout'),
     path('test/', show_test),
-    path('reviews/', get_reviews),
+    path('reviews/', get_reviews, name='get_reviews'),
     path("reviews/<pk>", review_detail),
     path("reviews/form/<pk>", create_edit_review),
 ]

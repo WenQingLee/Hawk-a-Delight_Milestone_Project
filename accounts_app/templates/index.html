@@ -1,6 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<h1>User Auth display!</h1>
 
+
+<!--If user is logged in, display message and user name-->
+{% if request.user.username %} 
+
+Logged In As:{{request.user.username}} 
+
+{% endif %}
+
+<hr> 
+
+<!--To show the success message is user is logged in-->
+{% if messages %}
+<div>
+    {% for message in messages %} {{ message }} {% endfor %}
+</div>
+{% endif %} 
 
 {% endblock %}

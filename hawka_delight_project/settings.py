@@ -125,3 +125,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Adding a storage class to handle messages for accounts_app
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"

@@ -34,7 +34,7 @@
                     <a class="nav-link" href="#">Features</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="reviews/">Review</a>
+                    <a class="nav-link" href="{% url 'get_reviews' %}">Review</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Register</a>
@@ -45,7 +45,7 @@
         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                         <a class="dropdown-item" href="#">Action</a>
                     </div>
                 </li>
