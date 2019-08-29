@@ -26,5 +26,50 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['email', 'username', 'password1', 'password2']
-
     
+    
+    # To clean the email input and check if it already exists
+    def clean_email(self):
+        """
+        Extracts the email from the registration form and process
+        it to normalise it to a consistent format
+        """
+        email = self.cleaned_data.get('email')
+        
+        """
+        Check if there is any user using the same email and assign
+        it to user
+        """
+        user = User.objects.filter(email=email)
+        
+        """
+        If the queryset(user) contains any results returns True, if not,
+        False. If True, raise an error that it is already in use.
+        """
+        if user.exists() is True:
+            raise ValidationError("This email is already in use. Please try another email.")
+            
+        return email
+        
+    # To clean the password input and ensure that both passwords are the same
+    def clean_password2(self):
+        """
+        Extracts the password from the registration form and process
+        it to normalise it to a consistent format
+        """
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        
+        """
+        If the passwords don't match, raise an error.
+        """
+        if password1 != password2:
+            raise ValidationError("Please ensure that both the passwords are the same.")
+        
+        """
+        If any of the inputs for the password are missing, raise an error
+        """
+        if not password1 or not password2:
+            raise ValidationError("Please enter your password twice")
+            
+        return password2
