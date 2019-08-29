@@ -11,7 +11,8 @@ def index(request):
 # Logs the user out and return to the index page
 def logout(request):
     """
-    Logs the user out and show a message if it is successful
+    Logs the user out and show a message if it 
+    is successful
     """
     auth.logout(request)
     messages.success(request, "You have successfully logged out")
@@ -19,8 +20,47 @@ def logout(request):
 
 # Show the login page
 def login(request):
-    # Use the UserLoginForm from forms.py
-    login_form=UserLoginForm
-    return render(request, "login.html", {
-        'login_form': login_form
-    })
+    # If the user submits their username and passowrd
+    if request.method == 'POST':
+        """
+        Get the user inputs with reference to the 
+        UserLoginForm from forms.py
+        """
+        login_form = UserLoginForm(request.POST)
+        
+        """
+        Runs validation if the login input fits the 
+        form input fields specified
+        """
+        if login_form.is_valid():
+            username = request.POST["username"]
+            password = request.POST["password"]
+            
+            """
+            Check if the username and password is correct
+            and show a message if it is successful
+            """
+            user = auth.authenticate(username=username, password=password)
+            
+            """"
+            If correct, logs in the user and redirect to the index page,
+            otherwise show
+            an error message
+            """
+            if user is not None:
+                auth.login(user=user, request=request)
+                messages.success(request, "You have successfully logged in")
+                return redirect(reverse('index'))
+              
+            else:
+                login_form.add_error(None, 'Invalid username or password')
+        return render(request, 'login.html', {
+            'login_form':login_form
+        })
+            
+    else:
+        # Use the UserLoginForm from forms.py
+        login_form=UserLoginForm
+        return render(request, "login.html", {
+            'login_form': login_form
+        })
