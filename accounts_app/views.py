@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib import auth, messages
 from .forms import UserLoginForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -33,14 +34,12 @@ def login(request):
         form input fields specified
         """
         if login_form.is_valid():
-            username = request.POST["username"]
-            password = request.POST["password"]
             
             """
             Check if the username and password is correct
             and show a message if it is successful
             """
-            user = auth.authenticate(username=username, password=password)
+            user = auth.authenticate(username=request.POST["username"], password=request.POST["password"])
             
             """"
             If correct, logs in the user and redirect to the index page,

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Review
 from .forms import RecipeReviewForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -11,7 +12,8 @@ def show_test(request):
     and it will be rendered based on the "base.html" template
     """
     return render(request, "test.html")
-  
+
+@login_required 
 def get_reviews(request): 
     """
     Create a view that will return the list of reviews 
