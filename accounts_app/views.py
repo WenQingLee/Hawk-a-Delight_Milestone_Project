@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib import auth, messages
-from .forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, ResetPasswordForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -92,4 +92,11 @@ def register(request):
     form = UserRegistrationForm()
     return render(request, 'register.html', {
         'form': form
+    })
+
+# Show the password reset page    
+def password_reset(request):
+    reset_password_form=ResetPasswordForm
+    return render(request, "password-reset.html", {
+        'reset_password_form': reset_password_form
     })

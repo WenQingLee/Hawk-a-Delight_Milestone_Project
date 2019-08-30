@@ -12,6 +12,12 @@ class UserLoginForm(forms.Form):
 # Registration form for new users    
 class UserRegistrationForm(UserCreationForm):
     """
+    Added first names and last names as the required field in the registration form
+    """
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+    
+    """
     Input fields for password and confirm password with a widget for 
     PasswordInput class to obscure the password
     """
@@ -25,7 +31,7 @@ class UserRegistrationForm(UserCreationForm):
     """
     class Meta:
         model = User
-        fields = ['email', 'username', 'password1', 'password2']
+        fields = ['username', 'password1', 'password2', 'first_name', 'last_name', 'email']
     
     
     # To clean the email input and check if it already exists
@@ -73,3 +79,8 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Please enter your password twice")
             
         return password2
+        
+# Reset password form for users
+class ResetPasswordForm(forms.Form):
+    """Form for user to reset password"""
+    email = forms.EmailField()
