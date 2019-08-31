@@ -7,7 +7,7 @@ body{
 
 /*Navbar styling*/
 .navbar{
-    background-color: red;
+    background-color: #ff740a;
     margin-bottom:10px;
 }
 
@@ -37,7 +37,7 @@ body{
 /*Footer styling*/
 .contact-info {
     text-align: center;
-    background-color: green;
+    background-color: #ff740a;
     color: black;
     min-height: 150px;
 
@@ -45,5 +45,5 @@ body{
 
 .add-icon {
     font-size: 20px;
-    color: #fda40b;
+    color: black;
 }

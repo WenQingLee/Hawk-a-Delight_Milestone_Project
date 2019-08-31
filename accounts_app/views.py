@@ -137,5 +137,8 @@ def password_reset(request):
     
 # Show the profile page
 def profile(request):
-    return render(request, "profile.html")
+    profile = request.user
+    return render(request, "profile.html", {
+        'profile':profile
+    })
     

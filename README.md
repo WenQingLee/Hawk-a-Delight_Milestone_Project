@@ -71,3 +71,4 @@ I received inspiration for this project from X
  4. Fonts and icons were taken from FontAwesome
  5. Photos were taken from Pexels, a stock image library.
  5. Responsive Contact Us: https://codepen.io/anupkumar92/pen/PLLzNb
+ 6. Menu Items are taken from: https://www.authenticfoodquest.com/food-in-singapore/
