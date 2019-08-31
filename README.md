@@ -68,3 +68,6 @@ I received inspiration for this project from X
  1. Django Tips: https://medium.com/@DoorDash/tips-for-building-high-quality-django-apps-at-scale-a5a25917b2b5 
  2. Website Design Theme: https://colorlib.com/wp/template/vegefoods/ 
  3. Website dishes: https://www.authenticfoodquest.com/food-in-singapore
+ 4. Fonts and icons were taken from FontAwesome
+ 5. Photos were taken from Pexels, a stock image library.
+ 5. Responsive Contact Us: https://codepen.io/anupkumar92/pen/PLLzNb

@@ -9,20 +9,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
 
+    <!--Roboto Font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!--Custom CSS-->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css" />
 
+    <!--FontAwesome-->
+    <script src="https://kit.fontawesome.com/af4d281973.js"></script>
+
 </head>
 
 <body>
 
     <!--Bootstrap Navbar-->
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'index' %}"><img src="/media/img/logo.png" alt="Hawk-a-Delight logo">Hawk-a-Delight</a>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="/media/img/logo/logo.png" alt="Hawk-a-Delight logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -34,7 +40,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
-                
+                <!--Links to show if user is not authenticated-->
                 {% if not user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'register' %}">Register</a>
@@ -45,7 +51,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'password_reset' %}">Forgot your password</a>
                 </li>
-                {% endif %}
+                {% endif %} 
+                <!--Links to show only if user is authenticated-->
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,15 +85,40 @@
         </div>
     </nav>
 
-                    <!--Review entries-->
-                    {% block content %}
-                    
-                    {% endblock %}
-                    <!--Review entries end-->
+    <!--Page-->
+    {% block content %} {% endblock %}
+    <!--Page-->
+
+
+    <footer>
+        <!--Contact information-->
+            <div class="container-fluid mt-3">
+                <div class="row">
+                    <div class="col-md-4 mx-auto my-auto contact-info">
+                        <div class="add-icon"><i class="fas fa-map-marked"></i></div>
+                        <div>
+                            <p>Address</p>
+                            <p>111 North Bridge Road</p>
+                            <p>Singapore 179098</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mx-auto my-auto contact-info">
+                        <div class="add-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <p>Email</p>
+                            <p>info@hawkadelight.com</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mx-auto my-auto contact-info">
+                        <div class="add-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <p>Opening Hours</p>
+                            <p>Tue - Sun 9:00am - 11.00pm</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+    </footer>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

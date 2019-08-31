@@ -16,41 +16,89 @@
     <!--If user is logged in, display message and user name-->
     {% if request.user.username %} Logged In As:{{request.user.username}} {% endif %}
 
-    <hr>
-
   </section>
 
   <!--Index image and registration form-->
   <section>
 
-    <div class="row mx-auto">
+    <div class="row mx-auto bg-light">
       <!--Index image-->
-      <div class="col-xs-12 col-xl-8">
-        <img class="img-fluid" src="/media/img/jumbotron/hawkadelight-jumbo.jpg" alt="Welcome to Hawk-a-Delight">
+      <div class="col-xs-12 col-xl-8 my-3">
+        <img class="img-fluid" src="/media/img/index/hawkadelight.jpg" alt="Welcome to Hawk-a-Delight">
       </div>
 
-      <!--Corresponding form for the jumbotron-->
-      <div class="col-xs-12 col-xl-4">
+      <!--Corresponding Registration form-->
+      <div class="col-xs-12 col-xl-3 my-auto  mx-auto">
 
-        <!--Heading text for the form-->
-        <h1>Hawk-a-Delight</h1>
-        <p>Bringing delicacies to you.</p>
-        <hr />
+        <div class="register-form">
+          <h2>Register now!</h2>
+          <form method='POST'>
+            <div class="form-group">
+              <table class="table">
+                {% csrf_token %} {{ form.as_table }}
+              </table>
+              <input type='submit' />
+            </div>
+          </form>
+          <p>If you already have an account, you can log in <a href="{% url 'login' %}">here</a></p>
+        </div>
 
-        <!--Registration form-->
-        <h2>User Registration</h2>
-        <form method='POST'>
-          <table class="table">
-            {% csrf_token %} {{ form.as_table }}
+      </div>
+    </div>
 
-          </table>
-          <input type='submit' />
-        </form>
-        <p>If you already have an account, you can log in <a href="{% url 'login' %}">here</a></p>
 
+  </section>
+
+  <!--Customer testimonials-->
+  <section>
+    <!--Spacing and horizontal rules to create whitespace-->
+    <br />
+    <br />
+    <hr />
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-xl-4 testimonials">
+          <div class="row">
+            <div class="col-sm-4 col-md-4">
+              <img class="round" src="/media/img/index/small-profile-1.jpg" alt="Natalie says that culinary creations from Hawk-a-Delight delights the mind.">
+            </div>
+            <div class="col-sm-8 col-md-8">
+              <p><i>"Culinary creations to delight the mind."</i></p>
+              <p>Natalie, Food Critic, The Awesome Times</p>
+              <hr />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-xl-4 testimonials">
+          <div class="row">
+            <div class="col-sm-4 col-md-4">
+              <img class="round" src="/media/img/index/small-profile-2.jpg" alt="John states that Hawk-a-Delight uses quality ingredients and cooks creatively.">
+            </div>
+            <div class="col-sm-8 col-md-8">
+              <p><i>"Quality ingredients and creative cooking sets Hawk-a-Delight from their competition"</i></p>
+              <p>John Walberg, Chef, Burnt Chops</p>
+              <hr />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-xl-4 testimonials">
+          <div class="row">
+            <div class="col-sm-4 col-md-4">
+              <img class="round" src="/media/img/index/small-profile-3.jpg" alt="Ae-young says that Hawk-a-Delight creates popular submitted recipes.">
+            </div>
+            <div class="col-sm-8 col-md-8">
+              <p><i>"Watch your recipes come to life as Hawk-a-Delight creates popular submitted recipes"</i></p>
+              <p>Ae-young, Food Blogger, Influencer</p>
+              <hr />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!--Spacing to create whitespace-->
+  <br />
 </main>
 {% endblock %}
