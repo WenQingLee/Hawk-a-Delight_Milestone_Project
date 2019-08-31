@@ -1,26 +1,56 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% block title %}Hawk-a-Delight{% endblock %}
 
-{% block title %}Hawk-a-Delight{% endblock %}
-
+<!--Content for index page-->
 {% block content %}
+<main>
 
-<h1>Index page!</h1>
+  <!--Session messages-->
+  <section>
+    <!--To show the  message if user successfully registered-->
+    {% if messages %}
+    <div>
+      {% for message in messages %} {{ message }} {% endfor %}
+    </div>
+    {% endif %}
 
+    <!--If user is logged in, display message and user name-->
+    {% if request.user.username %} Logged In As:{{request.user.username}} {% endif %}
 
-<!--If user is logged in, display message and user name-->
-{% if request.user.username %} 
+    <hr>
 
-Logged In As:{{request.user.username}} 
+  </section>
 
-{% endif %}
+  <!--Index image and registration form-->
+  <section>
 
-<hr> 
+    <div class="row mx-auto">
+      <!--Index image-->
+      <div class="col-xs-12 col-xl-8">
+        <img class="img-fluid" src="/media/img/jumbotron/hawkadelight-jumbo.jpg" alt="Welcome to Hawk-a-Delight">
+      </div>
 
-<!--To show the success message is user is logged in-->
-{% if messages %}
-<div>
-    {% for message in messages %} {{ message }} {% endfor %}
-</div>
-{% endif %} 
+      <!--Corresponding form for the jumbotron-->
+      <div class="col-xs-12 col-xl-4">
 
+        <!--Heading text for the form-->
+        <h1>Hawk-a-Delight</h1>
+        <p>Bringing delicacies to you.</p>
+        <hr />
+
+        <!--Registration form-->
+        <h2>User Registration</h2>
+        <form method='POST'>
+          <table class="table">
+            {% csrf_token %} {{ form.as_table }}
+
+          </table>
+          <input type='submit' />
+        </form>
+        <p>If you already have an account, you can log in <a href="{% url 'login' %}">here</a></p>
+
+      </div>
+    </div>
+  </section>
+
+</main>
 {% endblock %}

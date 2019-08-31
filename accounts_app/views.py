@@ -7,7 +7,37 @@ from django.contrib.auth.decorators import login_required
 
 # Show the index page
 def index(request):
-    return render(request, "index.html")
+    """
+    If the register form is submitted and valid, the form will be saved.
+    """
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            """
+            After saving the form, it will login the user and redirect the
+            user to the index page, otherwise an error message will be shown
+            """
+            user = auth.authenticate(username = request.POST['username'], password = request.POST['password1'])
+            if user is not None:
+                auth.login(user=user, request=request)
+                messages.success(request, "You have successfully signed up for an account")
+                return redirect(reverse('index'))
+            else:
+                messages.error(request, "We are unable to create your account, please try again")
+        else:
+            return render(request, 'register.html', {
+                'form': form
+            })
+            
+    """
+    Use the form model UserRegistrationForm as a template for the form to be rendered
+    """        
+    form = UserRegistrationForm()
+    
+    return render(request, "index.html", {
+        'form': form
+    })
 
 # Logs the user out and return to the index page
 def logout(request):
@@ -89,7 +119,11 @@ def register(request):
                 'form': form
             })
     
+    """
+    Use the form model UserRegistrationForm as a template for the form to be rendered
+    """
     form = UserRegistrationForm()
+    
     return render(request, 'register.html', {
         'form': form
     })

@@ -1,3 +1,9 @@
-h1 {
-    background-color:red;
+/*Changing the color of the navbar*/
+.navbar{
+    background-color: white !important;
+}
+
+.table{
+    border: none;
+    text-align:left;
 }
