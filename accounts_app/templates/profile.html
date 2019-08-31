@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+
+<!--Title for Profile page-->
+{% block title %}Profile: {{request.user.username}}{% endblock %}
+
+<!--Content for Profile page-->
+{% block content %}
+
+<div class="row mx-auto m-3 p-3">
+<div>
+    
+<h2>Profile: {{request.user.username}}</h2>
+
+<hr />
+
+<p>Username: {{request.user.username}}</p>
+
+<p>First name: {{request.user.first_name}}</p> 
+
+<p>Last name: {{request.user.last_name}}</p>
+
+<p>Last logged in: {{request.user.last_login}}</p>
+
+<p>Date Joined: {{request.user.date_joined}}</p>
+
+</div>
+
+<br />
+
+</div>
+
+{% endblock %}

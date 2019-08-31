@@ -34,12 +34,6 @@
   </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
                 <!--Links to show if user is not authenticated-->
                 {% if not user.is_authenticated %}
                 <li class="nav-item">
@@ -75,7 +69,7 @@
                       {{request.user.username}} 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                         <a class="dropdown-item" href="#">Action</a>
                     </div>

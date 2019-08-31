@@ -134,3 +134,8 @@ def password_reset(request):
     return render(request, "password-reset.html", {
         'reset_password_form': reset_password_form
     })
+    
+# Show the profile page
+def profile(request):
+    return render(request, "profile.html")
+    

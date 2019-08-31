@@ -11,9 +11,10 @@ body{
     margin-bottom:10px;
 }
 
-/*Styling for the registration forme*/
-.register-form{
+/*Styling for the forms in accounts_app*/
+.account-form{
     font-size:12px;
+    padding:10px;
 }
 
 .table{

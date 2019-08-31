@@ -1,24 +1,28 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
+<!--Title for login page-->
 {% block title %}Login{% endblock %}
 
+
+
+<!--Content for login page-->
 {% block content %}
 
-<h1>Login Page</h1>
+<main>
 
-<form method='POST'>
-     {% csrf_token %}
-     {{ login_form.as_p }}
-     <input type="submit">
-</form>
+    <div class="account-form">
+        <h1>Login</h1>
 
-<hr> 
-{% if messages %}
-    <div>
-        {% for message in messages %} 
-        {{ message }} 
-        {% endfor %}
+        <form method='POST'>
+            <div class="form-group">
+                {% csrf_token %} {{ login_form.as_p }}
+                <input type="submit">
+            </div>
+        </form>
     </div>
-{% endif %}
+
+    <hr>
+</main>
+
 
 {% endblock %}

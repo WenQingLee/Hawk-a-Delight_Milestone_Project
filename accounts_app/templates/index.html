@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% block title %}Hawk-a-Delight{% endblock %}
+{% extends 'base.html' %} 
+
+<!--Title for index page-->
+{% block title %}Hawk-a-Delight{% endblock %}
 
 <!--Content for index page-->
 {% block content %}
@@ -8,13 +11,10 @@
   <section>
     <!--To show the  message if user successfully registered-->
     {% if messages %}
-    <div>
+    <div class="bg-warning m-3 p-3">
       {% for message in messages %} {{ message }} {% endfor %}
     </div>
     {% endif %}
-
-    <!--If user is logged in, display message and user name-->
-    {% if request.user.username %} Logged In As:{{request.user.username}} {% endif %}
 
   </section>
 
@@ -30,7 +30,7 @@
       <!--Corresponding Registration form-->
       <div class="col-xs-12 col-xl-3 my-auto  mx-auto">
 
-        <div class="register-form">
+        <div class="account-form">
           <h2>Register now!</h2>
           <form method='POST'>
             <div class="form-group">
