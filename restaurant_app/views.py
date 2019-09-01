@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Review
+from .models import Review, MenuItem
 from .forms import RecipeReviewForm
 from django.contrib.auth.decorators import login_required
 
@@ -49,3 +49,9 @@ def create_edit_review(request, pk=None):
     else:
         form = RecipeReviewForm(instance=review)
         return render(request, "recipereviewform.html", {"form":form})
+        
+@login_required
+
+def all_menu_items(request):
+    all_menu_items = MenuItem.objects.all()
+    return render(request, 'menu-items.html', {'all_menu_items':all_menu_items})

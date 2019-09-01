@@ -18,7 +18,6 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.views.static import serve
 from .settings import MEDIA_ROOT
-from restaurant_app.views import show_test, get_reviews, review_detail, create_edit_review
 
 # Import settings for images in media/img folder to show when DEBUG = True
 from django.conf.urls.static import static
@@ -27,10 +26,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts_app.urls')),
-    path('test/', show_test),
-    path('reviews/', get_reviews, name='get_reviews'),
-    path("reviews/<pk>", review_detail),
-    path("reviews/form/<pk>", create_edit_review),
+    path('restaurant/', include('restaurant_app.urls')),
 ]
 
 # Import settings for images in media/img folder to show when DEBUG = True
