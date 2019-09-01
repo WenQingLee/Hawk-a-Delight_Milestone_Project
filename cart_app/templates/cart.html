@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+<!--Title for Cart-->
+{% block title %}My Cart{% endblock %}
+
+<!--Content for cart.html-->
+
+{% block content %}
+
+<div class="container-fluid row">
+
+    {% for item in cart_items %}
+
+    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4">
+
+        <!--item of the loop of the item of the context of the name of the item in the context-->
+        <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{item.item.image)"></div>
+
+        <div class="caption">
+            <h3>{{ item.item.name }}</h3>
+            <p class="item-description">{{ item.item.description }}</p>
+            <p>{{ item.item.price }}</p>
+
+            <p>
+
+                <form mehod="POST" action="{% url 'adjust_cart' item.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="InputAmount">New Quantity</label>
+                        <div>{{ item.quantity }}</div>
+                        <div class="input-group">
+                            <h5>Quantity</h5>
+                            
+                            <input name="quantity" type="number" min="0" max="99" class="form-control" placeholder="quantity">
+                            
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit New Quantity</button>
+                </form>
+
+            </p>
+
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+<div class="row">
+    <p>Total</p>
+    <p>{{ total }}</p>
+
+    <a href="/" class="btn btn-success" role="button">Checkout</a>
+
+</div>
+
+{% endblock %}

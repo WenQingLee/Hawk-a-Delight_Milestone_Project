@@ -25,59 +25,82 @@
 
 <body>
 
-    <!--Bootstrap Navbar-->
-
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="{% url 'index' %}"><img src="/media/img/logo/logo.png" alt="Hawk-a-Delight logo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <!--Navbar and search field-->
+    <section>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="/media/img/logo/logo.png" alt="Hawk-a-Delight logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <!--Links to show if user is not authenticated-->
-                {% if not user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'password_reset' %}">Forgot your password</a>
-                </li>
-                {% endif %} 
-                <!--Links to show only if user is authenticated-->
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <!--Links to show if user is not authenticated-->
+                    {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'password_reset' %}">Forgot your password</a>
+                    </li>
+                    {% endif %}
+                    <!--Links to show only if user is authenticated-->
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Menu 
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url 'all_menu_items' %}">Menu items</a>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Cart</a>
-                        <a class="dropdown-item" href="#">Checkout</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Suggest a dish</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'get_reviews' %}">Review</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'all_menu_items' %}">Menu items</a>
+                            <a class="dropdown-item" href="#">Checkout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Suggest a dish</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'get_reviews' %}">Review</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_cart' %}">
+                        <i class="fa fa-shopping-cart"></i> Cart
+                        <!--To show the number of items currently in the cart-->
+                        {% if item_count > 0 %}
+                        <label class="badge badge-warning">{{ item_count }}</label>
+                        {% endif %}
+                    
+                    </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{request.user.username}} 
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                        <a class="dropdown-item" href="#">Action</a>
-                    </div>
-                </li>
-                {% endif %}
-            </ul>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                            <a class="dropdown-item" href="#">Action</a>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+    <!--Search field-->
+    <div class="container-fluid">
+        <div>
+            <form action="{% url 'do_search' %}" method="GET">
+                <input type="text", name="query">
+                <button type="submit">Search</button>
+            </form>
         </div>
-    </nav>
+    </div>
+
+
+    </section>
 
     <!--Page-->
     {% block content %} {% endblock %}
@@ -86,32 +109,32 @@
 
     <footer>
         <!--Contact information-->
-            <div class="container-fluid mt-3">
-                <div class="row">
-                    <div class="col-md-4 mx-auto my-auto contact-info">
-                        <div class="add-icon"><i class="fas fa-map-marked"></i></div>
-                        <div>
-                            <p>Address</p>
-                            <p>111 North Bridge Road</p>
-                            <p>Singapore 179098</p>
-                        </div>
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-md-4 mx-auto my-auto contact-info">
+                    <div class="add-icon"><i class="fas fa-map-marked"></i></div>
+                    <div>
+                        <p>Address</p>
+                        <p>111 North Bridge Road</p>
+                        <p>Singapore 179098</p>
                     </div>
-                    <div class="col-md-4 mx-auto my-auto contact-info">
-                        <div class="add-icon"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <p>Email</p>
-                            <p>info@hawkadelight.com</p>
-                        </div>
+                </div>
+                <div class="col-md-4 mx-auto my-auto contact-info">
+                    <div class="add-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <p>Email</p>
+                        <p>info@hawkadelight.com</p>
                     </div>
-                    <div class="col-md-4 mx-auto my-auto contact-info">
-                        <div class="add-icon"><i class="fas fa-clock"></i></div>
-                        <div>
-                            <p>Opening Hours</p>
-                            <p>Tue - Sun 9:00am - 11.00pm</p>
-                        </div>
+                </div>
+                <div class="col-md-4 mx-auto my-auto contact-info">
+                    <div class="add-icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <p>Opening Hours</p>
+                        <p>Tue - Sun 9:00am - 11.00pm</p>
                     </div>
                 </div>
             </div>
+        </div>
     </footer>
 
 

@@ -1,17 +1,23 @@
-{% extends 'base.html' %} {% block title %}Menu Items{% endblock %} {% block content %}
+{% extends 'base.html' %} 
+
+<!--Title for menu items-->
+{% block title %}Menu Items{% endblock %} 
+
+<!--Content for menu items-->
+{% block content %}
 
 <h1>Menu-items</h1>
 
 <div class="container-fluid row">
     {% for item in all_menu_items %}
 
-    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel=default">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4">
 
         <!--Panel to show the menu items-->
-        <div class="panel-body">
+        <div>
 
             <!--Item details-->
-            <div class="product" style="background-image: url('{{ MEDIA_URL }}{{item.image)"></div>
+            <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{item.image)"></div>
             <h3>{{ item.name }}</h3>
             <p class="item-description">{{ item.description }}</p>
             <p>$ {{ item.price }}</p>
