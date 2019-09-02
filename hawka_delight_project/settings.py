@@ -132,8 +132,8 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE_KEY')
-STRIPE_SECRET = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 
 # Adding a storage class to handle messages for accounts_app

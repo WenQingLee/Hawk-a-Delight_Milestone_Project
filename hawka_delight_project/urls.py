@@ -29,6 +29,7 @@ urlpatterns = [
     path('restaurant/', include('restaurant_app.urls')),
     path('shop/', include('cart_app.urls')),
     path('search/', include('search_app.urls')),
+    path('payment/', include('checkout_app.urls')),
 ]
 
 # Import settings for images in media/img folder to show when DEBUG = True

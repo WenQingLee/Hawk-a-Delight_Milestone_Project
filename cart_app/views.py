@@ -30,6 +30,8 @@ def adjust_cart(request, id):
     """
     quantity=int(request.POST.get('quantity'))
     cart=request.session.get('cart', {})
+    print(str(quantity))
+    print(str(id))
     """
     Adjusts the quantity of the item in the cart if it
     is greater than 0. There will be no item if the quantity

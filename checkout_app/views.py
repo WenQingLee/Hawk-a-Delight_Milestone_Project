@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404(), reverse, redirect
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 import stripe
@@ -20,6 +20,7 @@ def checkout(request):
         
         if order_form.is_valid() and payment_form.is_valid():
             
+            order = order_form.save(commit=False)
             # Defining the cart and total variables
             cart = request.session.get('cart', {})
             total = 0
@@ -28,9 +29,9 @@ def checkout(request):
                 item = get_object_or_404(MenuItem, pk=id)
                 total += quantity * item.price
                 order_line_item = OrderLineItem(
-                    order = order
-                    item = item
-                    quantity = quantity
+                    order = order,
+                    item = item,
+                    quantity = quantity,
                     )
                 order_line_item.save()
                 
@@ -45,7 +46,6 @@ def checkout(request):
                 messages.error(request, "Your card was declined")
                 
             if customer.paid:
-                order = order_form.save(commit=False)
                 order.date = timezone.now()
                 order.save()
                 messages.error(request, "Your payment was successful")
