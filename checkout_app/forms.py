@@ -16,7 +16,9 @@ class OrderForm(forms.ModelForm):
     
     class Meta:
         labels = {
-            'street_address1' : "Street Address 1"
+            'postcode' : "Postal Code",
+            'street_address1' : "Street Address 1",
+            'street_address2' : "Street Address 2",
         }
         model = Order
         fields = ('full_name', 'phone_number', 'country', 'postcode', 'town_or_city', 'street_address1', 'street_address2')

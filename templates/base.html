@@ -20,7 +20,7 @@
 
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/af4d281973.js"></script>
-    
+
     <!--JQuery-->
     <script type="text/javascript" src="{% static 'js/jquery-3.4.1.js' %}"></script>
 
@@ -66,6 +66,9 @@
                         <a class="nav-link" href="{% url 'submit_recipe' %}">Suggest a dish</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'recipe_list' %}">Submitted recipes</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'get_reviews' %}">Review</a>
                     </li>
                     <li class="nav-item">
@@ -93,15 +96,26 @@
             </div>
         </nav>
 
-    <!--Search field-->
-    <div class="container-fluid">
-        <div>
-            <form action="{% url 'do_search' %}" method="GET">
-                <input type="text", name="query">
-                <button type="submit">Search</button>
-            </form>
+        <!--Search field-->
+        <div class="container-fluid">
+            <div>
+                <form action="{% url 'do_search' %}" method="GET">
+                    <input type="text" , name="query">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
+
+        <!--Session messages-->
+        <section>
+            <!--To show the  message if user successfully registered-->
+            {% if messages %}
+            <div class="bg-warning m-3 p-3">
+                {% for message in messages %} {{ message }} {% endfor %}
+            </div>
+            {% endif %}
+
+        </section>
 
 
     </section>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+<!--Block title the recipe list-->
+{% block title %}{{ recipe.name }}{% endblock %}
+
+<!--Content for recipe-list.html-->
+{% block content %}
+
+<!--Test for recipe name-->
+{{ recipe.name }}
+{{ recipe.views }}
+
+{% endblock %}

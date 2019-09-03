@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from .models import Recipe, Review
 from .forms import RecipeForm, ReviewForm
@@ -23,7 +23,6 @@ def submit_recipe(request):
             return render(request, 'submit-recipe.html', {
                 'form' :form
             })
-        
             
     """
     Use the form model Recipe form as a template
@@ -36,8 +35,19 @@ def submit_recipe(request):
     
 # To show all the recipes available
 def recipe_list(request):
-    recipe_list=Recipe.objects.all()
+    recipe_list=Recipe.objects.all().order_by('-created_date')
     
     return render(request, "recipe-list.html", {
         'recipe_list':recipe_list
     })
+
+# To return the recipe details based on the recipe ID(pk)
+def recipe_details(request, id):
+    recipe = get_object_or_404(Recipe, pk=id)
+    recipe.views += 1
+    recipe.save()
+    return render(request, "recipe-detail.html", {
+        'recipe':recipe
+    })
+
+
