@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-@login_required
+@login_required()
 def submit_recipe(request):
     """
     If the submit recipe form is submitted and valid, the form will be saved
@@ -48,6 +48,31 @@ def recipe_details(request, id):
     recipe.save()
     return render(request, "recipe-detail.html", {
         'recipe':recipe
+    })
+    
+@login_required()
+def submit_review(request, id):
+    """
+    If the submit review form is submitted and valid, the form will be saved
+    """
+    if request.method=="POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            recipe = get_object_or_404(Recipe, pk=id)
+            reviewform = form.save(commit=False)
+            reviewform.user = request.user
+            reviewform.save()
+            messages.success(request, "You have successfully submitted a review")
+            return redirect(reverse('recipe_details'))
+        else:
+            return render(request, 'submit-review.html', {
+                'form' : form,
+                'recipe':recipe
+            })
+    form = ReviewForm()
+    
+    return render( request, "submit-review.html", {
+        'form' : form
     })
 
 

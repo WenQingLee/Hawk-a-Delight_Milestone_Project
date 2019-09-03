@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+<!--Block title the recipe list-->
+{% block title %}{{ recipe.name }}{% endblock %}
+
+<!--Content for recipe-list.html-->
+{% block content %}
+
+<!--Test for recipe name-->
+{{ recipe.name }} 
+{{ recipe.views }}
+
+<h2>Comments:</h2>
+<form method='POST'>
+    <div class="form-group">
+        <table class="table">
+            {% csrf_token %} {{ form.as_table }}
+        </table>
+        <input type='submit' />
+    </div>
+</form>
+
+{% endblock %}
