@@ -12,12 +12,7 @@ def add_to_cart(request, id):
     name, quantity, of menu-item.html in restaurant_app
     """
     quantity=int(request.POST.get('quantity'))
-    """
-    Gets the cart from the session, which is in contexts.py of
-    cart_app. Note that the cart_contents method was added to
-    context processes in the hawka_delight_project settings.py 
-    so that it is available in all pages during the session
-    """
+
     cart=request.session.get('cart',{})
     cart[id]=cart.get(id, quantity)
     
@@ -30,17 +25,16 @@ def adjust_cart(request, id):
     """
     quantity=int(request.POST.get('quantity'))
     cart=request.session.get('cart', {})
-    print(str(quantity))
-    print(str(id))
     """
-    Adjusts the quantity of the item in the cart if it
-    is greater than 0. There will be no item if the quantity
-    is 0. Otherwise, add the item to cart
+    Adjusts the quantity of the item in the cart according to the property, id,
+    if it is greater than 0. There will be no item if the quantity
+    is 0 as it will be removed from the array. Note that id has to be converted
+    to a string as it was defined as an integer in the urls.py
     """
     if quantity>0:
         cart[id] = quantity
     else:
-        cart.pop(id)
+        cart.pop(str(id))
         
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))

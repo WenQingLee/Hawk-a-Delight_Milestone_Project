@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+<!--Block title for submitting a recipe-->
+{% block title %}Submit a recipe{% endblock %}
+
+<!--Content for submit-recipe.html-->
+{% block content %}
+
+<div class="recipe-form">
+    <h2>Submit a Recipe</h2>
+    <form method = "POST">
+        <div class="form-group">
+            <table class="table">
+                {% csrf_token %}
+                {{ form.as_table }}
+            </table>
+            <input type="submit" />
+        </div>
+    </form>
+</div>
+
+{% endblock %}

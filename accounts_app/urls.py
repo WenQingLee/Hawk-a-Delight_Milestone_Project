@@ -1,5 +1,5 @@
 from django.urls import path, include
-from.views import index, logout, login, register, password_reset, profile
+from .views import index, logout, login, register, password_reset, profile
 
 urlpatterns = [
     path('', index, name='index'),

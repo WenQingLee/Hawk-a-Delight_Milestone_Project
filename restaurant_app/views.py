@@ -6,12 +6,6 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def show_test(request):
-    """
-    Create a view that will show the homepage of the website
-    and it will be rendered based on the "base.html" template
-    """
-    return render(request, "test.html")
 
 @login_required 
 def get_reviews(request): 
@@ -22,7 +16,7 @@ def get_reviews(request):
     """
     reviews = Review.objects.filter(published_date__lte=timezone.now()).order_by("-published_date")
     return render(request, "reviews.html", {"reviews":reviews})
-    
+
 def review_detail(request, pk):
     """
     Create a view that returns a single review details based
@@ -51,7 +45,6 @@ def create_edit_review(request, pk=None):
         return render(request, "recipereviewform.html", {"form":form})
         
 @login_required
-
 def all_menu_items(request):
     all_menu_items = MenuItem.objects.all()
     return render(request, 'menu-items.html', {'all_menu_items':all_menu_items})

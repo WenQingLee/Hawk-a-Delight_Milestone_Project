@@ -13,7 +13,11 @@ class MakePaymentForm(forms.Form):
     stripe_id = forms.CharField(widget=forms.HiddenInput)
     
 class OrderForm(forms.ModelForm):
+    
     class Meta:
-        Model = Order
+        labels = {
+            'street_address1' : "Street Address 1"
+        }
+        model = Order
         fields = ('full_name', 'phone_number', 'country', 'postcode', 'town_or_city', 'street_address1', 'street_address2')
         

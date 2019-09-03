@@ -20,6 +20,9 @@
 
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/af4d281973.js"></script>
+    
+    <!--JQuery-->
+    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.js' %}"></script>
 
     {% block head_js %}{% endblock %}
 </head>
@@ -60,7 +63,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Suggest a dish</a>
+                        <a class="nav-link" href="{% url 'submit_recipe' %}">Suggest a dish</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'get_reviews' %}">Review</a>
@@ -137,9 +140,6 @@
             </div>
         </div>
     </footer>
-
-    <!--JQuery-->
-    <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

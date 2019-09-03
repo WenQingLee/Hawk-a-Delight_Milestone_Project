@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'restaurant_app',
     'accounts_app',
     'cart_app',
     'checkout_app',
+    'submitrecipe_app',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,5 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 # Adding a storage class to handle messages for accounts_app
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

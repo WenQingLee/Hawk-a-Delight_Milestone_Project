@@ -21,6 +21,8 @@ def checkout(request):
         if order_form.is_valid() and payment_form.is_valid():
             
             order = order_form.save(commit=False)
+            order.date = timezone.now()
+            order.save()
             # Defining the cart and total variables
             cart = request.session.get('cart', {})
             total = 0
@@ -46,8 +48,7 @@ def checkout(request):
                 messages.error(request, "Your card was declined")
                 
             if customer.paid:
-                order.date = timezone.now()
-                order.save()
+
                 messages.error(request, "Your payment was successful")
                 request.session['cart'] = {}
                 return redirect(reverse('all_menu_items'))
