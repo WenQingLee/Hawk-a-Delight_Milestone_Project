@@ -54,7 +54,6 @@ body {
 }
 
 /*Styling for item images use for the menu items and cart*/
-
 @media (max-width: 575.99px) {
     .item-image {
         background-size: contain;

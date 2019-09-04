@@ -10,9 +10,17 @@
 {{ recipe.name }}
 {{ recipe.views }}
 
-{{recipe_review.title}}
-{{recipe_review.comment}}
+{% for recipe in recipe_review %}
+{{recipe.name}}
+{{recipe.comment}}
 
+<br />
+{% endfor %}
+
+<a class="btn btn-primary" href="{% url 'upvote_recipe' recipe.id %}" role="button"><i class="fas fa-vote-yea"></i> Upvote</a>
+<!--<a href="{% url 'upvote_recipe' recipe.id %}">Upvote</a>-->
+
+<p>Recipe votes: {{ recipe.votes }}</p>
 <a class="btn btn-primary" href="{% url 'submit_review' recipe.id %}" role="button">Comment on the recipe</a>
 
 {% endblock %}

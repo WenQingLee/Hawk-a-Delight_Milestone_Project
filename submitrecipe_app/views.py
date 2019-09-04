@@ -44,12 +44,12 @@ def recipe_list(request):
 # To return the recipe details based on the recipe ID(pk)
 def recipe_details(request, id):
     recipe = get_object_or_404(Recipe, pk=id)
-    # recipe_review = get_object_or_404(Review, recipe=recipe.id)
+    reviews = recipe.review_set.all()
     recipe.views += 1
     recipe.save()
     return render(request, "recipe-detail.html", {
         'recipe':recipe,
-        # 'recipe_review':recipe_review,
+        'recipe_review':reviews,
     })
     
 @login_required()
@@ -63,9 +63,10 @@ def submit_review(request, id):
             recipe = get_object_or_404(Recipe, pk=id)
             reviewform = form.save(commit=False)
             reviewform.user = request.user
+            reviewform.recipe = recipe
             reviewform.save()
             messages.success(request, "You have successfully submitted a review")
-            return redirect(reverse('recipe_details'))
+            return redirect(reverse('recipe_details', kwargs={'id':id} ))
         else:
             return render(request, 'submit-review.html', {
                 'form' : form,
@@ -78,3 +79,11 @@ def submit_review(request, id):
     })
 
 
+@login_required()
+def upvote_recipe(request, id):
+    recipe = get_object_or_404(Recipe, pk=id)
+    recipe.votes +=1
+    recipe.save()
+    return render(request, "recipe-detail.html", {
+        'recipe':recipe,
+    })

@@ -56,3 +56,16 @@ def menu_item_detail(request, pk):
         'menu_item_detail':menu_item_detail
     })
     
+@login_required()
+def menu_type(request, type):
+    if type == "Breakfast":
+        menu_item_type = MenuItem.objects.filter(type="Breakfast")
+    elif type == "Lunch":
+        menu_item_type = MenuItem.objects.filter(type="Lunch")
+    elif type == "Dinner":
+        menu_item_type = MenuItem.objects.filter(type="Dinner")
+    return render(request, "menu-items.html",{
+        'all_menu_items': menu_item_type
+    })
+        
+    

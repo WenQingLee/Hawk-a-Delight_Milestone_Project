@@ -25,10 +25,25 @@
         </div>
     </div>
     {% endif %}
+    <br />
+
+    <!--Dropdown list for menu items-->
+    <div class="dropdown m-4">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select Menu Type
+  </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% url 'all_menu_items' %}">All Dishes</a>
+            <a class="dropdown-item" href="{% url 'menu_type' 'Breakfast' %}">Breakfast</a>
+            <a class="dropdown-item" href="{% url 'menu_type' 'Lunch' %}">Lunch</a>
+            <a class="dropdown-item" href="{% url 'menu_type' 'Dinner' %}">Dinner</a>
+        </div>
+    </div>
 
     <div class='m-4'>
         <h1>Menu items</h1>
     </div>
+    <hr />
 
     <div class="container-fluid row mx-auto">
         <!--To show the menu items obtained-->

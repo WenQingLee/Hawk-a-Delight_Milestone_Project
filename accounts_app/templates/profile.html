@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 <!--Title for Profile page-->
 {% block title %}Profile: {{request.user.username}}{% endblock %}
@@ -7,27 +7,27 @@
 {% block content %}
 
 <div class="row mx-auto m-3 p-3">
-<div>
-    
-<h3><i class="fas fa-user"></i> Profile: {{request.user.username}}</h3>
+    <div class="mx-auto">
 
-<hr />
+        <h3><i class="fas fa-user"></i> Profile: {{request.user.username}}</h3>
 
-<p>Username: {{profile.username}}</p>
+        <hr />
 
-<p>First name: {{profile.first_name}}</p> 
+        <p>Username: {{profile.username}}</p>
 
-<p>Last name: {{profile.last_name}}</p>
+        <p>First name: {{profile.first_name}}</p>
 
-<p>Email: {{profile.email}}</p>
+        <p>Last name: {{profile.last_name}}</p>
 
-<p>Last logged in: {{profile.last_login}}</p>
+        <p>Email: {{profile.email}}</p>
 
-<p>Date Joined: {{profile.date_joined}}</p>
+        <p>Last logged in: {{profile.last_login}}</p>
 
-</div>
+        <p>Date Joined: {{profile.date_joined}}</p>
 
-<br />
+    </div>
+
+    <br />
 
 </div>
 
