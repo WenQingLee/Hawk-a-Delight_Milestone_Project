@@ -83,3 +83,9 @@ body {
 a {
     color: black;
 }
+
+
+.card-img-top {
+    max-height:200 !important;
+}
+

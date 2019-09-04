@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 <!--Block title for submitting a recipe-->
-{% block title %}Submit a recipe{% endblock %}
+{% block title %}Suggest a recipe{% endblock %}
 
 <!--Content for submit-recipe.html-->
 {% block content %}
 
-<div class="recipe-form">
-    <h2>Submit a Recipe</h2>
-    <form method = "POST">
+<div class="recipe-form col-md-12">
+    <h3>Suggest a Recipe</h3>
+    <hr />
+    <form method = "POST" enctype="multipart/form-data">
         <div class="form-group">
-            <table class="table">
+            <!--<table class="table">-->
                 {% csrf_token %}
-                {{ form.as_table }}
-            </table>
+                {{ form | crispy }}
+                <!--{{ form.as_table }}-->
+            <!--</table>-->
+            <hr />
             <input type="submit" />
         </div>
     </form>

@@ -5,42 +5,57 @@
 
 <!--Content for recipe-list.html-->
 {% block content %}
+<section>
+    <!--Breadcrumb links-->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Suggested Recipes</a></li>
+        </ol>
+    </nav>
 
-<!--Search field to be shown if authenticated-->
-{% if user.is_authenticated %}
-<div class="container-fluid">
-    <div>
-        <form action="{% url 'do_recipe_search' %}" method="GET">
-            <input type="text" , name="query" , placeholder="Search recipe items">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-</div>
-{% endif %}
-
-<!--Section to show the submitted recipes-->
-<div class="container-fluid row">
-    {% for recipe in recipe_list %}
-        
-        <div class="col-xl-4">
-            
-            <!--Recipe items-->
-            <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{recipe.image}}')">
-            
-            <h3>{{ recipe.name }}</h3> 
-            <p class="item-description">Submitted by: {{ recipe.user }}</p>
-            <p class="item-description">Times viewed: {{ recipe.views }}</p>
-            <p class="item-description">Number of votes: {{ recipe.vote }}</p>
-            <p class="item-description">Submitted on: {{ recipe.created_date }}</p>
-            <a class="btn btn-primary" href="{% url 'recipe_details' recipe.id %}" role="button">Recipe Detail</a>
-            </div>
-                        
+    <!--Search field to be shown if authenticated-->
+    <div class="container-fluid">
+        <div class="float-right">
+            <form action="{% url 'do_recipe_search' %}" method="GET">
+                <input type="text" , name="query" , placeholder="Search recipe items">
+                <button type="submit">Search</button>
+            </form>
         </div>
+    </div>
+    <br />
     
-    {% endfor %}
-    
-    
-    
-</div>
+    <div class='m-4'>
+        <h3>Suggested recipes</h3>
+    </div>
+    <hr />
+
+    <!--Section to show the submitted recipes-->
+    <div class="container-fluid row mx-auto">
+
+        {% for recipe in recipe_list %}
+        <div class="card col-xl-2 col-md-3 m-4">
+            <a href="{% url 'recipe_details' recipe.id %}">
+                <br />
+                {% if recipe.image %}
+                <img src="{{ MEDIA_URL }}{{recipe.image}}" class="card-img-top" alt="{{recipe.name}}">
+                {% else %}
+            <image src="/media/img/not-found/no-image-available.svg" class="card-img-top" alt="{{recipe.name}}">
+            {% endif %}
+            <br />
+                <div class="card-body">
+                <p="card-title">{{ recipe.name }}</p>
+                <hr />
+                <p>Times viewed: {{ recipe.views }}</p>
+                <p>Number of votes: {{ recipe.votes }}</p>
+                <p>Submitted on: {{ recipe.created_date }}</p>
+                <a class="btn btn-primary" href="{% url 'recipe_details' recipe.id %}" role="button">Recipe Details</a>
+                </div>
+            </a>
+        </div>
+        
+        {% endfor %}
+
+    </div>
+</section>
 
 {% endblock %}

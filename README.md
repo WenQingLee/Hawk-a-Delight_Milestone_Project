@@ -72,3 +72,4 @@ I received inspiration for this project from X
  5. Photos were taken from Pexels, a stock image library.
  5. Responsive Contact Us: https://codepen.io/anupkumar92/pen/PLLzNb
  6. Menu Items are taken from: https://www.authenticfoodquest.com/food-in-singapore/
+ 7. No photo available image: By en:User:Cburnett - Own work (Original text: Own work in Inkscape), Public Domain, https://commons.wikimedia.org/w/index.php?curid=1841287

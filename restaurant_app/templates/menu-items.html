@@ -15,7 +15,6 @@
     </nav>
 
     <!--Search field to be shown if authenticated-->
-    {% if user.is_authenticated %}
     <div class="container-fluid">
         <div class="float-right">
             <form action="{% url 'do_menu_search' %}" method="GET">
@@ -24,7 +23,6 @@
             </form>
         </div>
     </div>
-    {% endif %}
     <br />
 
     <!--Dropdown list for menu items-->
@@ -48,50 +46,18 @@
     <div class="container-fluid row mx-auto">
         <!--To show the menu items obtained-->
         {% for item in all_menu_items %}
-
-
-        <!--Test Cards-->
-
         <div class="card col-xl-2 col-md-3 m-4">
             <a href="{% url 'menu_item_detail' item.id %}">
                 <br />
-        <img src="{{ MEDIA_URL }}{{item.image}}" class="card-img-top" alt="{{item.name}}">
-        <div class="card-body">
-            <p="card-title">{{ item.name }}</p>
-            <!--<p class="card-text">{{ item.description }}</p>-->
-            <!--<a href="#" class="btn btn-primary">Dish details</a>-->
+                <img src="{{ MEDIA_URL }}{{item.image}}" class="card-img-top" alt="{{item.name}}">
+                <div class="card-body">
+                    <p="card-title">{{ item.name }}</p>
+                </div>
+            </a>
         </div>
-        </a>
+        {% endfor %}
+
     </div>
-
-
-    <!--end test-->
-
-
-    <!--<div class="col-xl-4">-->
-
-    <!--Item details-->
-    <!--    <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{item.image}}"></div>-->
-    <!--    <h3>{{ item.name }}</h3>-->
-    <!--    <p class="item-description">{{ item.description }}</p>-->
-    <!--    <p>$ {{ item.price }}</p>-->
-
-    <!--Form to add to cart-->
-    <!--    <form method="POST" , action="{% url 'add_to_cart' item.id %}">-->
-    <!--        {% csrf_token %}-->
-    <!--        <div class="input-group">-->
-    <!--            Quantity of menu items-->
-    <!--            <input name="quantity" type="number" min="1" max="99" class="form-control" placeholder="quantity">-->
-    <!--            <span class="input-group-btn">-->
-    <!--                    <button class="btn btn-success" type="submit">Add</button>-->
-    <!--                </span>-->
-
-    <!--        </div>-->
-    <!--    </form>-->
-    <!--</div>-->
-    {% endfor %}
-    </div>
-
 
     </div>
 </section>

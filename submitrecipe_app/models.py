@@ -14,7 +14,7 @@ class Recipe(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     views = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
-    image = models.ImageField(upload_to="img", blank=True, null=True)
+    image = models.ImageField(upload_to="images/", blank=True, null=True)
     
     def __str__(self):
         return self.name

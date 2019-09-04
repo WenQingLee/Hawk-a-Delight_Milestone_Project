@@ -12,7 +12,7 @@ def submit_recipe(request):
     If the submit recipe form is submitted and valid, the form will be saved
     """
     if request.method=="POST":
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             recipeform = form.save(commit=False)
             recipeform.user = request.user
@@ -38,7 +38,7 @@ def recipe_list(request):
     recipe_list=Recipe.objects.all().order_by('-created_date')
     
     return render(request, "recipe-list.html", {
-        'recipe_list':recipe_list
+        'recipe_list':recipe_list,
     })
 
 # To return the recipe details based on the recipe ID(pk)
@@ -46,10 +46,19 @@ def recipe_details(request, id):
     recipe = get_object_or_404(Recipe, pk=id)
     reviews = recipe.review_set.all()
     recipe.views += 1
+    
+    user = request.user
+    
+    print(user.id)
+    print(recipe.user.id)
+    print(reviews)
+    print(reviews)
+    
     recipe.save()
     return render(request, "recipe-detail.html", {
         'recipe':recipe,
         'recipe_review':reviews,
+        'user': user,
     })
     
 @login_required()
