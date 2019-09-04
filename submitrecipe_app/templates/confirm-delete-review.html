@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+<!--Block title for submitting a recipe-->
+{% block title %}Delete {{ review.name }}{% endblock %}
+
+<!--Content for submit-recipe.html-->
+{% block content %}
+
+<div class="recipe-form col-md-12">
+    <h3>Delete the Recipe: {{ review.name }}</h3>
+    <hr />
+    <form method = "POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete the review: {{ review.name }}</p>
+        <input type="submit" />
+        <a class="btn btn-primary" href="{% url 'recipe_list' %}" role="button">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

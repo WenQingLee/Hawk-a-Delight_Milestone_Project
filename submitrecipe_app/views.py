@@ -4,6 +4,12 @@ from .models import Recipe, Review
 from .forms import RecipeForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
+from .models import Recipe, Review
+from .forms import RecipeForm, ReviewForm
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 # To allow users to submit a recipe
@@ -86,10 +92,12 @@ def submit_review(request, id):
 @login_required()
 def upvote_recipe(request, id):
     recipe = get_object_or_404(Recipe, pk=id)
+    reviews = recipe.review_set.all()
     recipe.votes +=1
     recipe.save()
     return render(request, "recipe-detail.html", {
         'recipe':recipe,
+        'recipe_review':reviews
     })
     
 # To allow the user to edit their submitted recipes
@@ -129,8 +137,8 @@ def edit_review(request, id):
             reviewform.user = request.user
             reviewform.recipe = review.recipe
             reviewform.save()
-            messages.success(request, "You have successfully submitted a review")
-            return redirect(reverse('recipe_details', kwargs={'id':id} ))
+            messages.success(request, "You have successfully edited a review")
+            return redirect(reverse('recipe_details', kwargs={'id':review.recipe.id} ))
         else:
             return render(request, "edit-review.html",{
                 'form':form,
@@ -142,3 +150,30 @@ def edit_review(request, id):
         'form' : form
     })
         
+# To allow the user to delete their submitted recipes
+@login_required()
+def delete_recipe(request, id):
+    recipe=get_object_or_404(Recipe, id=id)
+    if request.method=="POST":
+        recipe.delete()
+        messages.success(request, "You have successsfully deleted the recipe")
+        return redirect('recipe_list')
+        
+    else:  
+        return render(request, "confirm-delete-recipe.html", {
+            'recipe' : recipe
+        })
+
+# To allow the user to delete the their submitted reviews
+@login_required()
+def delete_review(request, id):
+    review=get_object_or_404(Review, id=id)
+    if request.method=="POST":
+        review.delete()
+        messages.success(request, "You have successfully deleted the review")
+        return redirect(reverse('recipe_details', kwargs={'id':review.recipe.id} ))
+    
+    else:
+        return render(request, "confirm-delete-review.html", {
+            'review' : review
+        })

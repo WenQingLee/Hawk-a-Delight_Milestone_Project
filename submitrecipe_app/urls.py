@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import submit_recipe, recipe_list, recipe_details, submit_review, upvote_recipe, edit_recipe, edit_review
+from .views import submit_recipe, recipe_list, recipe_details, submit_review, upvote_recipe, edit_recipe, edit_review, delete_recipe, delete_review
 
 urlpatterns = [
     path('recipe/', submit_recipe, name='submit_recipe'),
@@ -9,4 +9,6 @@ urlpatterns = [
     path('recipe/upvote/<int:id>', upvote_recipe, name='upvote_recipe'),
     path('recipe/edit-recipe/<int:id>', edit_recipe, name='edit_recipe'),
     path('recipe/edit-review/<int:id>', edit_review, name='edit_review'),
+    path('recipe/delete-recipe/<int:id>', delete_recipe, name='delete_recipe'),
+    path('recipe/delete-review/<int:id>', delete_review, name="delete_review")
     ]

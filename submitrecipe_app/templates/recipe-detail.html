@@ -6,97 +6,80 @@
 <!--Content for recipe-list.html-->
 {% block content %}
 <section>
-    <!--Breadcrumb links-->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'recipe_list' %}">List of Recipes</a></li>
-            <li class="breadcrumb-item"><a href="#">{{ recipe.name }}</a></li>
-        </ol>
-    </nav>
+  <!--Breadcrumb links-->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'recipe_list' %}">List of Recipes</a></li>
+      <li class="breadcrumb-item"><a href="#">{{ recipe.name }}</a></li>
+    </ol>
+  </nav>
 
+  <div class="container-fluid">
 
+    <!--Submitted Recipe Details-->
+    <div>
+      {% if recipe.image %}
+      <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{recipe.image}}"></div>
 
-    <div class="container-fluid">
-
-        <!--Submitted Recipe Details-->
-        <div>
-            <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{recipe.image}}"></div>
-            <hr />
-        </div>
-        <!--Table of recipe details-->
-        <div class="text-center">
-            <h3>{{ recipe.name }}</h3>
-            <p>Submitted by: {{ recipe.user }}</p>
-            <p>Ingredients: {{ recipe.ingredients }}</p>
-            <p>Preparation steps: {{ recipe.preparation_steps }}</p>
-            <p>Cooking time: {{ recipe.duration }}</p>
-            <p>Date suggested: {{ recipe.created_date }}</p>
-            <p>No. of views: {{ recipe.views }}</p>
-            <p>Recipe votes: {{ recipe.votes }}</p>
-            {% if recipe.user.id == user.id %}
-    
-            <a class="btn btn-primary" href="{% url 'edit_recipe' recipe.id %}" role="button">Edit Recipe</a>
-    
-            {% endif %}
-            <a class="btn btn-primary" href="{% url 'upvote_recipe' recipe.id %}" role="button"><i class="fas fa-vote-yea"></i> Upvote</a>
-            <a class="btn btn-primary" href="{% url 'submit_review' recipe.id %}" role="button">Comment on the recipe</a> 
-            <hr />
-        </div>
-
-        <div>
-            <!--Submitted Recipe Comments-->
-            <h3>Comments on {{ recipe.name }}</h3>
-            {% for review in recipe_review %}
-            <p>Title</p>
-            {%  if review.user.id == user.id %}
-            <a class="btn btn-primary" href="{% url 'edit_review' recipe.id %}" role="button">Edit Review</a>
-            {% endif %}
-            <p>{{review.name}}</p>
-            <p>Commented by {{ review.user }} on {{ review.published_date}}</p>
-            <p>{{review.comment}}</p>
-            <br /> 
-            
-            
-            
-            
-            {% endfor %}
-        </div>
+      {% else %}
+      <div class="item-image" style="background-image: url('/media/img/not-found/no-image-available.svg"></div>
+      {% endif %}
+      <hr />
     </div>
-    
-    
-    
-    <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Commented by {{ recipe.user }} on {{ recipe.created_date }}</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
 
-    
+    <!--Recipe details-->
+    <div class="text-center">
+      <h3>{{ recipe.name }}</h3>
+      <p>Submitted by: {{ recipe.user }}</p>
+      <p>Ingredients: {{ recipe.ingredients }}</p>
+      <p>Preparation steps: {{ recipe.preparation_steps }}</p>
+      <p>Cooking time: {{ recipe.duration }}</p>
+      <p>Date suggested: {{ recipe.created_date }}</p>
+      <p>No. of views: {{ recipe.views }}</p>
+      <p>Recipe votes: {{ recipe.votes }}</p>
+      {% if recipe.user.id == user.id %}
+
+      <a class="btn btn-primary" href="{% url 'edit_recipe' recipe.id %}" role="button">Edit Recipe</a>
+      <a class="btn btn-primary" href="{% url 'delete_recipe' recipe.id %}" role="button">Delete Recipe</a> {% endif %}
+      <a class="btn btn-primary" href="{% url 'upvote_recipe' recipe.id %}" role="button"><i class="fas fa-vote-yea"></i> Upvote</a>
+      <a class="btn btn-primary" href="{% url 'submit_review' recipe.id %}" role="button">Comment on the recipe</a>
+      <hr />
+    </div>
+
+    <div>
+      <!--Submitted Recipe Comments-->
+      <h3>Comments on {{ recipe.name }}</h3>
+
+      <!--For loop for reviews-->
+      {% for review in recipe_review %}
+      
+      
+      <!--Table for recipe reviews-->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Commented by {{ review.user }} on {{ review.published_date }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{ review.name }}</th>
+          </tr>
+          <tr>
+            <th scope="row">{{ review.comment }}</th>
+      </table>
+
+      <!--To allow the edit and delete review buttons to show if it is submitted by the user only-->
+      {% if review.user.id == user.id %}
+      <a class="btn btn-primary" href="{% url 'edit_review' review.id %}" role="button">Edit Review</a>
+      <a class="btn btn-primary" href="{% url 'delete_review' review.id %}" role="button">Delete Review</a> {% endif %}
+
+      <hr /> {% endfor %}
+    </div>
+  </div>
+
+
+
 
 </section>
 

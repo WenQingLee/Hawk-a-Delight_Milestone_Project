@@ -23,9 +23,9 @@
         </div>
     </div>
     <br />
-    
+
     <div class='m-4'>
-        <h3>Suggested recipes</h3>
+        <h3>User suggested recipes</h3>
     </div>
     <hr />
 
@@ -34,25 +34,28 @@
 
         {% for recipe in recipe_list %}
         <div class="card col-xl-2 col-md-3 m-4">
-            <a href="{% url 'recipe_details' recipe.id %}">
-                <br />
-                {% if recipe.image %}
-                <img src="{{ MEDIA_URL }}{{recipe.image}}" class="card-img-top" alt="{{recipe.name}}">
-                {% else %}
-            <image src="/media/img/not-found/no-image-available.svg" class="card-img-top" alt="{{recipe.name}}">
+            <br />
+
+            <!--If there are no recipe images, show the iamge not available instead-->
+
+            {% if recipe.image %}
+            <img src="{{ MEDIA_URL }}{{recipe.image}}" class="card-img-top" alt="{{recipe.name}}"> 
+            {% else %}
+            <img src="/media/img/not-found/no-image-available.svg" class="card-img-top" alt="{{recipe.name}}" alt="No Image Here">
             {% endif %}
             <br />
+
+                <!--User Submitted Recipes-->
                 <div class="card-body">
-                <p="card-title">{{ recipe.name }}</p>
-                <hr />
-                <p>Times viewed: {{ recipe.views }}</p>
-                <p>Number of votes: {{ recipe.votes }}</p>
-                <p>Submitted on: {{ recipe.created_date }}</p>
-                <a class="btn btn-primary" href="{% url 'recipe_details' recipe.id %}" role="button">Recipe Details</a>
+                    <p="card-title">{{ recipe.name }}</p>
+                        <hr />
+                        <p>Times viewed: {{ recipe.views }}</p>
+                        <p>Number of votes: {{ recipe.votes }}</p>
+                        <p>Submitted on: {{ recipe.created_date }}</p>
+                        <a class="btn btn-primary" href="{% url 'recipe_details' recipe.id %}" role="button">Recipe Details</a>
                 </div>
-            </a>
         </div>
-        
+
         {% endfor %}
 
     </div>

@@ -84,7 +84,7 @@ a {
     color: black;
 }
 
-
+/*Specifying the maximum height for the card images*/
 .card-img-top {
     max-height:200 !important;
 }
