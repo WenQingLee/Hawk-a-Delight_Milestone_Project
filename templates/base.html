@@ -50,23 +50,18 @@
                     {% endif %}
                     <!--Links to show only if user is authenticated-->
                     {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all_menu_items' %}"><i class="fas fa-utensils"></i> Menu</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-utensils"></i> Menu 
+                      <i class="fas fa-file"></i> Suggest a dish</a>
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'all_menu_items' %}">Menu items</a>
-                            <a class="dropdown-item" href="#">Checkout</a>
+                            <a class="dropdown-item" href="{% url 'submit_recipe' %}">Submit a recipe</a>
+                            <a class="dropdown-item" href="{% url 'recipe_list' %}">List of submitted recipes</a>
+                            <a class="dropdown-item" href="{% url 'get_reviews' %}">Review a recipe</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'submit_recipe' %}"><i class="fas fa-file"></i> Suggest a dish</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'recipe_list' %}">Submitted recipes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'get_reviews' %}">Review</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'view_cart' %}">

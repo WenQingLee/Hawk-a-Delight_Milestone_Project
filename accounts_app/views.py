@@ -40,6 +40,7 @@ def index(request):
     })
 
 # Logs the user out and return to the index page
+@login_required()
 def logout(request):
     """
     Logs the user out and show a message if it 
@@ -128,7 +129,7 @@ def register(request):
         'form': form
     })
 
-# Show the password reset page    
+# Show the password reset page
 def password_reset(request):
     reset_password_form=ResetPasswordForm
     return render(request, "password-reset.html", {
@@ -136,6 +137,7 @@ def password_reset(request):
     })
     
 # Show the profile page
+@login_required()
 def profile(request):
     profile = request.user
     return render(request, "profile.html", {

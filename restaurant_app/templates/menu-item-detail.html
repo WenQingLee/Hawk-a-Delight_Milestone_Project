@@ -9,48 +9,45 @@
     <!--Breadcrumb links-->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Library</li>
+            <li class="breadcrumb-item"><a href="{% url 'all_menu_items' %}">Menu Items</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ menu_item_detail.name }}</li>
         </ol>
     </nav>
-
-    <!--Search field to be shown if authenticated-->
-    {% if user.is_authenticated %}
-    <div class="container-fluid">
-        <div>
-            <form action="{% url 'do_menu_search' %}" method="GET">
-                <input type="text" , name="query" , placeholder="Search menu items">
-                <button type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-    {% endif %}
 </section>
 
 
 
 <section>
 
-    <div class="container fluid row">
+    <div class="container fluid row mx-auto">
         <div class="col-xl-6">
-        <h1>{{ menu_item_detail.name }}</h1>
-        <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{menu_item_detail.image}}"></div>
-        <p class="item-description">{{ menu_item_detail.description }}</p>
-        <p>Price: $ {{ menu_item_detail.price }}</p>
+            <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{menu_item_detail.image}}"></div>
+            <h3 class="text-center">{{ menu_item_detail.name }}</h3>
+            <hr />
+            <p class="item-description">{{ menu_item_detail.description }}</p>
+            <hr />
+            <p>Price: $ {{ menu_item_detail.price }}</p>
         </div>
 
         <div class="col-xl-6">
-            <!--Form to add to cart-->
-            <form method="POST" , action="{% url 'add_to_cart' menu_item_detail.id %}">
-                {% csrf_token %}
-                <div class="input-group">
-                    Quantity of menu items
-                    <input name="quantity" type="number" min="1" max="99" class="form-control" placeholder="quantity">
-                    <span class="input-group-btn">
+            <div>
+                <br />
+                <br />
+                <!--Form to add to cart-->
+                <form method="POST" , action="{% url 'add_to_cart' menu_item_detail.id %}">
+                    {% csrf_token %}
+                    <div>
+                        <div>
+                            <h5>Order Quantity: </h5>
+                        </div>
+                        <br />
+                        <input name="quantity" type="number" min="1" max="99" class="form-control" placeholder="Order Quantity">
+                        <br />
+                        <span class="input-group-btn">
                         <button class="btn btn-success" type="submit">Add</button>
                     </span>
-
-                </div>
+                    </div>
+            </div>
             </form>
         </div>
     </div>

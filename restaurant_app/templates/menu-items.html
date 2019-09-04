@@ -10,15 +10,14 @@
     <!--Breadcrumb links-->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Library</li>
+            <li class="breadcrumb-item"><a href="#">Menu items</a></li>
         </ol>
     </nav>
 
     <!--Search field to be shown if authenticated-->
     {% if user.is_authenticated %}
     <div class="container-fluid">
-        <div>
+        <div class="float-right">
             <form action="{% url 'do_menu_search' %}" method="GET">
                 <input type="text" , name="query" , placeholder="Search menu items">
                 <button type="submit">Search</button>
@@ -27,8 +26,9 @@
     </div>
     {% endif %}
 
-
-    <h1>Menu-items</h1>
+    <div class='m-4'>
+        <h1>Menu items</h1>
+    </div>
 
     <div class="container-fluid row mx-auto">
         <!--To show the menu items obtained-->
@@ -39,6 +39,7 @@
 
         <div class="card col-xl-2 col-md-3 m-4">
             <a href="{% url 'menu_item_detail' item.id %}">
+                <br />
         <img src="{{ MEDIA_URL }}{{item.image}}" class="card-img-top" alt="{{item.name}}">
         <div class="card-body">
             <p="card-title">{{ item.name }}</p>

@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-@login_required 
+@login_required() 
 def get_reviews(request): 
     """
     Create a view that will return the list of reviews 
@@ -44,12 +44,12 @@ def create_edit_review(request, pk=None):
         form = RecipeReviewForm(instance=review)
         return render(request, "recipereviewform.html", {"form":form})
         
-@login_required
+@login_required()
 def all_menu_items(request):
     all_menu_items = MenuItem.objects.all().order_by('name')
     return render(request, 'menu-items.html', {'all_menu_items':all_menu_items})
     
-
+@login_required()
 def menu_item_detail(request, pk):
     menu_item_detail = get_object_or_404(MenuItem, pk=pk)
     return render(request, "menu-item-detail.html", {

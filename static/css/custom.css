@@ -1,28 +1,32 @@
 /*Roboto font for the webpages*/
-html, 
-body{
-    height:100%;
+
+html,
+body {
+    height: 100%;
     font-family: 'Roboto', sans-serif;
 }
 
 /*Navbar styling*/
-.navbar{
+
+.navbar {
     background-color: #ff740a;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 /*Styling for the forms in accounts_app*/
-.account-form{
-    font-size:12px;
-    padding:10px;
+
+.account-form {
+    font-size: 12px;
+    padding: 10px;
 }
 
-.table{
-    text-align:left;
-    font-size:12px;
+.table {
+    text-align: left;
+    font-size: 12px;
 }
 
 /*styling for testimonials*/
+
 .testimonials {
     text-align: center;
     padding: 10px;
@@ -35,6 +39,7 @@ body{
 
 
 /*Footer styling*/
+
 .contact-info {
     text-align: center;
     background-color: #ff740a;
@@ -49,16 +54,33 @@ body{
 }
 
 /*Styling for item images use for the menu items and cart*/
-.item-image{
-    background-size:contain;
-    background-position:center center;
-    background-repeat:no-repeat;
-    width:250px;
-    height:250px;
-    margin:0 auto;
+
+@media (max-width: 575.99px) {
+    .item-image {
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+    }
+}
+
+
+@media (min-width: 576px) {
+    .item-image {
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 500px;
+        height: 400px;
+        margin: 0 auto;
+    }
+
 }
 
 /*To change the font color to black for links*/
+
 a {
-    color:black;
+    color: black;
 }
