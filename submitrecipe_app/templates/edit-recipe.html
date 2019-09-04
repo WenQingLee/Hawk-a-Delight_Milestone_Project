@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+<!--Block title for submitting a recipe-->
+{% block title %}Edit Recipe{% endblock %}
+
+<!--Content for submit-recipe.html-->
+{% block content %}
+
+<div class="recipe-form col-md-12">
+    <h3>Edit a Recipe</h3>
+    <hr />
+    <form method = "POST" enctype="multipart/form-data">
+        <div class="form-group">
+                {% csrf_token %}
+                {{ form | crispy }}
+            <hr />
+            <input type="submit" />
+        </div>
+    </form>
+</div>
+
+{% endblock %}

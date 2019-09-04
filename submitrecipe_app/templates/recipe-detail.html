@@ -35,7 +35,7 @@
             <p>Recipe votes: {{ recipe.votes }}</p>
             {% if recipe.user.id == user.id %}
     
-            <a class="btn btn-primary" href="#" role="button">Edit Recipe</a>
+            <a class="btn btn-primary" href="{% url 'edit_recipe' recipe.id %}" role="button">Edit Recipe</a>
     
             {% endif %}
             <a class="btn btn-primary" href="{% url 'upvote_recipe' recipe.id %}" role="button"><i class="fas fa-vote-yea"></i> Upvote</a>
@@ -48,8 +48,11 @@
             <h3>Comments on {{ recipe.name }}</h3>
             {% for review in recipe_review %}
             <p>Title</p>
+            {%  if review.user.id == user.id %}
+            <a class="btn btn-primary" href="{% url 'edit_review' recipe.id %}" role="button">Edit Review</a>
+            {% endif %}
             <p>{{review.name}}</p>
-            <p>Commented by {{ recipe.user }} on {{ recipe.created_date }}</p>
+            <p>Commented by {{ review.user }} on {{ review.published_date}}</p>
             <p>{{review.comment}}</p>
             <br /> 
             

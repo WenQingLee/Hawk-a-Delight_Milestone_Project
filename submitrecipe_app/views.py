@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+# To allow users to submit a recipe
 @login_required()
 def submit_recipe(request):
     """
@@ -47,20 +48,13 @@ def recipe_details(request, id):
     reviews = recipe.review_set.all()
     recipe.views += 1
     
-    user = request.user
-    
-    print(user.id)
-    print(recipe.user.id)
-    print(reviews)
-    print(reviews)
-    
     recipe.save()
     return render(request, "recipe-detail.html", {
         'recipe':recipe,
         'recipe_review':reviews,
-        'user': user,
     })
-    
+
+# To allo users to submit reviews for the recipes
 @login_required()
 def submit_review(request, id):
     """
@@ -79,15 +73,16 @@ def submit_review(request, id):
         else:
             return render(request, 'submit-review.html', {
                 'form' : form,
-                'recipe':recipe
+                'recipe':recipe,
             })
+            
     form = ReviewForm()
     
-    return render( request, "submit-review.html", {
+    return render(request, "submit-review.html", {
         'form' : form
     })
 
-
+# To allow the users to upvote the recipes
 @login_required()
 def upvote_recipe(request, id):
     recipe = get_object_or_404(Recipe, pk=id)
@@ -96,3 +91,54 @@ def upvote_recipe(request, id):
     return render(request, "recipe-detail.html", {
         'recipe':recipe,
     })
+    
+# To allow the user to edit their submitted recipes
+@login_required()
+def edit_recipe(request, id):
+    recipe = get_object_or_404(Recipe, pk=id)
+    
+    if request.method=="POST":
+        form=RecipeForm(request.POST, request.FILES, instance=recipe)
+        if form.is_valid():
+            recipeform = form.save(commit=False)
+            recipeform.user = request.user
+            recipeform.save()
+            messages.success(request, "You have successsfully updated the recipe")
+            return redirect(reverse('recipe_details', kwargs={'id':id} ))
+        else:
+            return render(request, 'edit-recipe.html', {
+                'form':form,
+                'recipe':recipe,
+            })
+            
+    form = RecipeForm()
+    
+    return render(request, "edit-recipe.html",{
+        'form' : form
+    })
+    
+# To allow the user to edit their submitted reviews    
+@login_required()
+def edit_review(request, id):
+    
+    if request.method=="POST":
+        review=get_object_or_404(Review, pk=id)
+        form=ReviewForm(request.POST, request.FILES, instance=review)
+        if form.is_valid():
+            reviewform=form.save(commit=False)
+            reviewform.user = request.user
+            reviewform.recipe = review.recipe
+            reviewform.save()
+            messages.success(request, "You have successfully submitted a review")
+            return redirect(reverse('recipe_details', kwargs={'id':id} ))
+        else:
+            return render(request, "edit-review.html",{
+                'form':form,
+            })
+            
+    form = ReviewForm()
+    
+    return render(request, "edit-review.html", {
+        'form' : form
+    })
+        
