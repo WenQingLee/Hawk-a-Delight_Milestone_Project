@@ -6,6 +6,18 @@
 <!--Content for recipe-list.html-->
 {% block content %}
 
+<!--Search field to be shown if authenticated-->
+{% if user.is_authenticated %}
+<div class="container-fluid">
+    <div>
+        <form action="{% url 'do_recipe_search' %}" method="GET">
+            <input type="text" , name="query" , placeholder="Search recipe items">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+
 <!--Section to show the submitted recipes-->
 <div class="container-fluid row">
     {% for recipe in recipe_list %}

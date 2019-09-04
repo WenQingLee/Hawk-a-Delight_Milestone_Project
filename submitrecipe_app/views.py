@@ -44,10 +44,12 @@ def recipe_list(request):
 # To return the recipe details based on the recipe ID(pk)
 def recipe_details(request, id):
     recipe = get_object_or_404(Recipe, pk=id)
+    # recipe_review = get_object_or_404(Review, recipe=recipe.id)
     recipe.views += 1
     recipe.save()
     return render(request, "recipe-detail.html", {
-        'recipe':recipe
+        'recipe':recipe,
+        # 'recipe_review':recipe_review,
     })
     
 @login_required()

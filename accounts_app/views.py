@@ -79,7 +79,7 @@ def login(request):
             if user is not None:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully logged in")
-                return redirect(reverse('index'))
+                return redirect(reverse('all_menu_items'))
               
             else:
                 login_form.add_error(None, 'Invalid username or password')

@@ -57,3 +57,8 @@ body{
     height:250px;
     margin:0 auto;
 }
+
+/*To change the font color to black for links*/
+a {
+    color:black;
+}

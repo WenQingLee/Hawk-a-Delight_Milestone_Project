@@ -10,6 +10,9 @@
 {{ recipe.name }}
 {{ recipe.views }}
 
-<a class="btn btn-primary" href="{% url 'submit_review' recipe.id %}" role="button">Edit the recipe</a>
+{{recipe_review.title}}
+{{recipe_review.comment}}
+
+<a class="btn btn-primary" href="{% url 'submit_review' recipe.id %}" role="button">Comment on the recipe</a>
 
 {% endblock %}

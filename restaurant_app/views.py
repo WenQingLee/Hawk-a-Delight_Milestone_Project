@@ -46,5 +46,13 @@ def create_edit_review(request, pk=None):
         
 @login_required
 def all_menu_items(request):
-    all_menu_items = MenuItem.objects.all()
+    all_menu_items = MenuItem.objects.all().order_by('name')
     return render(request, 'menu-items.html', {'all_menu_items':all_menu_items})
+    
+
+def menu_item_detail(request, pk):
+    menu_item_detail = get_object_or_404(MenuItem, pk=pk)
+    return render(request, "menu-item-detail.html", {
+        'menu_item_detail':menu_item_detail
+    })
+    

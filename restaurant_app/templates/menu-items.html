@@ -1,44 +1,83 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 <!--Title for menu items-->
-{% block title %}Menu Items{% endblock %} 
+{% block title %}Menu Items{% endblock %}
 
 <!--Content for menu items-->
 {% block content %}
+<section>
 
-<h1>Menu-items</h1>
+    <!--Breadcrumb links-->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Library</li>
+        </ol>
+    </nav>
 
-<div class="container-fluid row">
-    {% for item in all_menu_items %}
-
-
-        <!--Panel to show the menu items-->
-        <div class="col-xl-4">
-
-            <!--Item details-->
-            <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{item.image}}"></div>
-            <h3>{{ item.name }}</h3>
-            <p class="item-description">{{ item.description }}</p>
-            <p>$ {{ item.price }}</p>
-
-            <!--Form to add to cart-->
-            <form method="POST" , action="{% url 'add_to_cart' item.id %}">
-                {% csrf_token %}
-                <div class="input-group">
-                    Quantity of menu items
-                    <input name="quantity" type="number" min="1" max="99" class="form-control" placeholder="quantity">
-                    <span class="input-group-btn">
-                        <button class="btn btn-success" type="submit">Add</button>
-                    </span>
-
-                </div>
+    <!--Search field to be shown if authenticated-->
+    {% if user.is_authenticated %}
+    <div class="container-fluid">
+        <div>
+            <form action="{% url 'do_menu_search' %}" method="GET">
+                <input type="text" , name="query" , placeholder="Search menu items">
+                <button type="submit">Search</button>
             </form>
-
         </div>
-        {% endfor %}
+    </div>
+    {% endif %}
+
+
+    <h1>Menu-items</h1>
+
+    <div class="container-fluid row mx-auto">
+        <!--To show the menu items obtained-->
+        {% for item in all_menu_items %}
+
+
+        <!--Test Cards-->
+
+        <div class="card col-xl-2 col-md-3 m-4">
+            <a href="{% url 'menu_item_detail' item.id %}">
+        <img src="{{ MEDIA_URL }}{{item.image}}" class="card-img-top" alt="{{item.name}}">
+        <div class="card-body">
+            <p="card-title">{{ item.name }}</p>
+            <!--<p class="card-text">{{ item.description }}</p>-->
+            <!--<a href="#" class="btn btn-primary">Dish details</a>-->
+        </div>
+        </a>
     </div>
 
 
-</div>
+    <!--end test-->
+
+
+    <!--<div class="col-xl-4">-->
+
+    <!--Item details-->
+    <!--    <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{item.image}}"></div>-->
+    <!--    <h3>{{ item.name }}</h3>-->
+    <!--    <p class="item-description">{{ item.description }}</p>-->
+    <!--    <p>$ {{ item.price }}</p>-->
+
+    <!--Form to add to cart-->
+    <!--    <form method="POST" , action="{% url 'add_to_cart' item.id %}">-->
+    <!--        {% csrf_token %}-->
+    <!--        <div class="input-group">-->
+    <!--            Quantity of menu items-->
+    <!--            <input name="quantity" type="number" min="1" max="99" class="form-control" placeholder="quantity">-->
+    <!--            <span class="input-group-btn">-->
+    <!--                    <button class="btn btn-success" type="submit">Add</button>-->
+    <!--                </span>-->
+
+    <!--        </div>-->
+    <!--    </form>-->
+    <!--</div>-->
+    {% endfor %}
+    </div>
+
+
+    </div>
+</section>
 
 {% endblock %}

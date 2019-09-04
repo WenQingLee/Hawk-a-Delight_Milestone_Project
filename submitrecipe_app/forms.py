@@ -10,5 +10,8 @@ class RecipeForm(forms.ModelForm):
 # Form for reviews on recipes
 class ReviewForm(forms.ModelForm):
     class Meta:
+        labels = {
+            'name' : "Review Title"
+        }
         model = Review
-        fields = ("comment", )
+        fields = ("name", "comment", )

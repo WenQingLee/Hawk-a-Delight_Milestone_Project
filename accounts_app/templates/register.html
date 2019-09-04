@@ -6,7 +6,8 @@
 <!--Content for register.html-->
 {% block content %}
 
-<div class="account-form">
+<div class="account-form mx-auto row">
+    <div>
     <h2>User Registration</h2>
     <form method='POST'>
         <div class="form-group">
@@ -17,6 +18,7 @@
         </div>
     </form>
     <p>If you already have an account, you can log in <a href="{% url 'login' %}">here</a></p>
+</div>
 </div>
 
 {% endblock %}

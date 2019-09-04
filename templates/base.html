@@ -11,20 +11,17 @@
 
     <!--Roboto Font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <!--Custom CSS-->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css" />
-
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/af4d281973.js"></script>
-
     <!--JQuery-->
     <script type="text/javascript" src="{% static 'js/jquery-3.4.1.js' %}"></script>
 
     {% block head_js %}{% endblock %}
+    
 </head>
 
 <body>
@@ -55,7 +52,7 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Menu 
+                      <i class="fas fa-utensils"></i> Menu 
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'all_menu_items' %}">Menu items</a>
@@ -63,7 +60,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'submit_recipe' %}">Suggest a dish</a>
+                        <a class="nav-link" href="{% url 'submit_recipe' %}"><i class="fas fa-file"></i> Suggest a dish</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'recipe_list' %}">Submitted recipes</a>
@@ -74,16 +71,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'view_cart' %}">
                         <i class="fa fa-shopping-cart"></i> Cart
-                        <!--To show the number of items currently in the cart-->
+                        <!--To show the total cost of items currently in the cart-->
                         {% if item_count > 0 %}
-                        <label class="badge badge-warning">{{ item_count }}</label>
+                        <label class="badge badge-warning">{{ total }}</label>
                         {% endif %}
-                    
                     </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {{request.user.username}} 
+                      <i class="fas fa-user"></i> {{request.user.username}} 
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
@@ -95,35 +91,21 @@
                 </ul>
             </div>
         </nav>
-
-        <!--Search field-->
-        <div class="container-fluid">
-            <div>
-                <form action="{% url 'do_search' %}" method="GET">
-                    <input type="text" , name="query">
-                    <button type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-
+        
         <!--Session messages-->
         <section>
-            <!--To show the  message if user successfully registered-->
+            <!--To show the message if user successfully registered, recipe was successful, etc-->
             {% if messages %}
             <div class="bg-warning m-3 p-3">
                 {% for message in messages %} {{ message }} {% endfor %}
             </div>
             {% endif %}
-
         </section>
-
 
     </section>
 
-    <!--Page-->
+    <!--Page Content-->
     {% block content %} {% endblock %}
-    <!--Page-->
-
 
     <footer>
         <!--Contact information-->
