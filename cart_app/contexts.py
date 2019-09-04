@@ -20,8 +20,11 @@ def cart_contents(request):
     """
     for id, quantity in cart.items():
         item = get_object_or_404(MenuItem, pk=id)
+        
+        subtotal = quantity * item.price
+        
         total += quantity * item.price
         item_count += quantity
-        cart_items.append({'id': id, 'quantity': quantity, 'item': item})
+        cart_items.append({'id': id, 'quantity': quantity, 'item': item, 'subtotal':subtotal})
     
     return {'cart_items': cart_items, 'total': total, 'item_count': item_count}

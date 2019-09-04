@@ -7,52 +7,53 @@
 
 {% block content %}
 
-<div class="container-fluid row">
+<section>
 
-    {% for item in cart_items %}
+    <!--Breadcrumb links-->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'all_menu_items' %}">Menu Items</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Shopping cart</li>
+        </ol>
+    </nav>
 
-    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4">
+    <div class="container-fluid row">
 
-        <!--item of the loop of the item of the context of the name of the item in the context-->
-        <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{item.item.image}}')"></div>
+        {% for item in cart_items %}
 
-        <div class="caption">
-            <h3>{{ item.item.name }}</h3>
-            <p class="item-description">{{ item.item.description }}</p>
-            <p>{{ item.item.price }}</p>
+        <div class="card col-xl-2 col-md-3 m-4">
 
-            <p>
+            <img src="{{ MEDIA_URL }}{{item.item.image}}" class="card-img-top" alt="{{item.item.name}}">
+            <div class="card-body">
+                <h5>{{ item.item.name }}</h5>
+                <p>$ {{ item.item.price }}</p>
 
                 <form method="POST" action="{% url 'adjust_cart' item.id %}">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="InputAmount">New Quantity</label>
-                        <div>{{ item.quantity }}</div>
+                        <p>Quantity in cart: {{ item.quantity }}</p>
                         <div class="input-group">
-                            <h5>Quantity</h5>
-                            
-                            <input name="quantity" type="number" min="0" max="99" class="form-control" placeholder="quantity">
-                            
+                            <input name="quantity" type="number" min="0" max="99" class="form-control" placeholder="Change quantity">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit New Quantity</button>
+                    <button type="submit" class="btn btn-primary">Change Quantity</button>
                 </form>
-
-            </p>
-
+            </div>
         </div>
+{% endfor %}
+    </div>
+    
+
+
+    <div class="container-fluid text-center">
+        <hr />
+        <p>Total: {{ total }}</p>
+        <p></p>
+
+        <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
 
     </div>
-    {% endfor %}
 
-</div>
-
-<div class="row">
-    <p>Total</p>
-    <p>{{ total }}</p>
-
-    <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
-
-</div>
+</section>
 
 {% endblock %}

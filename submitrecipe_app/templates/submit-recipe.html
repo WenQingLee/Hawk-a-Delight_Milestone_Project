@@ -8,6 +8,14 @@
 <!--Content for submit-recipe.html-->
 {% block content %}
 
+<!--Breadcrumb links-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'recipe_list' %}">Suggested Recipes</a></li>
+        <li class="breadcrumb-item"><a href="#">Suggest a recipe</a></li>
+    </ol>
+</nav>
+
 <div class="recipe-form col-md-12">
     <h3>Suggest a Recipe</h3>
     <hr />

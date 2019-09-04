@@ -86,6 +86,7 @@ a {
 
 /*Specifying the maximum height for the card images*/
 .card-img-top {
-    max-height:200 !important;
+    height:200 !important;
 }
+
 

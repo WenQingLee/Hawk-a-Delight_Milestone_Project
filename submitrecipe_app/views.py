@@ -41,6 +41,7 @@ def submit_recipe(request):
     })
     
 # To show all the recipes available
+@login_required()
 def recipe_list(request):
     recipe_list=Recipe.objects.all().order_by('-created_date')
     
@@ -49,6 +50,7 @@ def recipe_list(request):
     })
 
 # To return the recipe details based on the recipe ID(pk)
+@login_required()
 def recipe_details(request, id):
     recipe = get_object_or_404(Recipe, pk=id)
     reviews = recipe.review_set.all()
@@ -66,10 +68,10 @@ def submit_review(request, id):
     """
     If the submit review form is submitted and valid, the form will be saved
     """
+    recipe = get_object_or_404(Recipe, pk=id)
     if request.method=="POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
-            recipe = get_object_or_404(Recipe, pk=id)
             reviewform = form.save(commit=False)
             reviewform.user = request.user
             reviewform.recipe = recipe
@@ -85,7 +87,8 @@ def submit_review(request, id):
     form = ReviewForm()
     
     return render(request, "submit-review.html", {
-        'form' : form
+        'form' : form,
+        'recipe': recipe
     })
 
 # To allow the users to upvote the recipes
@@ -122,15 +125,17 @@ def edit_recipe(request, id):
     form = RecipeForm()
     
     return render(request, "edit-recipe.html",{
-        'form' : form
+        'form' : form,
+        'recipe': recipe
     })
     
 # To allow the user to edit their submitted reviews    
 @login_required()
 def edit_review(request, id):
-    
+    review=get_object_or_404(Review, pk=id)
+    recipe=review.recipe
     if request.method=="POST":
-        review=get_object_or_404(Review, pk=id)
+        
         form=ReviewForm(request.POST, request.FILES, instance=review)
         if form.is_valid():
             reviewform=form.save(commit=False)
@@ -142,12 +147,14 @@ def edit_review(request, id):
         else:
             return render(request, "edit-review.html",{
                 'form':form,
+                'recipe':recipe,
             })
             
     form = ReviewForm()
     
     return render(request, "edit-review.html", {
-        'form' : form
+        'form' : form,
+        'recipe' : recipe,
     })
         
 # To allow the user to delete their submitted recipes
@@ -168,6 +175,7 @@ def delete_recipe(request, id):
 @login_required()
 def delete_review(request, id):
     review=get_object_or_404(Review, id=id)
+    recipe=review.recipe
     if request.method=="POST":
         review.delete()
         messages.success(request, "You have successfully deleted the review")
@@ -175,5 +183,6 @@ def delete_review(request, id):
     
     else:
         return render(request, "confirm-delete-review.html", {
-            'review' : review
+            'review' : review,
+            'recipe' : recipe,
         })

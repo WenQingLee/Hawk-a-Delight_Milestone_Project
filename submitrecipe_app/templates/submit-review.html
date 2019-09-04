@@ -6,18 +6,25 @@
 <!--Content for recipe-list.html-->
 {% block content %}
 
-<!--Test for recipe name-->
-{{ recipe.name }} 
-{{ recipe.views }}
+<!--Breadcrumb links-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'recipe_list' %}">Suggested Recipes</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }} details</a></li>
+        <li class="breadcrumb-item"><a href="#">{{ recipe.name }}</a></li>
+    </ol>
+</nav>
 
-<h2>Comments:</h2>
-<form method='POST'>
-    <div class="form-group">
-        <table class="table">
-            {% csrf_token %} {{ form.as_table }}
-        </table>
-        <input type='submit' />
-    </div>
-</form>
+<div class="container-fluid">
+    <h2>Comments on {{ recipe.name }}:</h2>
+    <form method='POST'>
+        <div class="form-group">
+            <table class="table">
+                {% csrf_token %} {{ form.as_table }}
+            </table>
+            <input type='submit' />
+        </div>
+    </form>
+</div>
 
 {% endblock %}

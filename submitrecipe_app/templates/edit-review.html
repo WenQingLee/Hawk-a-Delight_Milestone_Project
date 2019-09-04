@@ -3,13 +3,22 @@
 {% load crispy_forms_tags %}
 
 <!--Block title for submitting a recipe-->
-{% block title %}Edit Review:{% endblock %}
+{% block title %}Edit Review: {{ recipe.name }}{% endblock %}
 
 <!--Content for submit-recipe.html-->
 {% block content %}
 
+<!--Breadcrumb links-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'recipe_list' %}">Suggested Recipes</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }} details</a></li>
+        <li class="breadcrumb-item"><a href="#">{{ recipe.name }}</a></li>
+    </ol>
+</nav>
+
 <div class="recipe-form col-md-12">
-    <h3>Edit a Review</h3>
+    <h3>Edit Review: {{ recipe.name }}</h3>
     <hr />
     <form method = "POST" enctype="multipart/form-data">
         <div class="form-group">

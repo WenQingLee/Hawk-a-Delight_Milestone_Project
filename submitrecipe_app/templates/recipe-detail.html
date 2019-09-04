@@ -55,18 +55,18 @@
       
       
       <!--Table for recipe reviews-->
-      <table class="table table-striped">
+      <table class="table table-bordered">
         <thead>
-          <tr>
-            <th scope="col">Commented by {{ review.user }} on {{ review.published_date }}</th>
+          <tr class="table-active">
+            <th scope="col">Title: <br />{{ review.name }}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">{{ review.name }}</th>
+            <th scope="row">Comment: <br /> {{ review.comment }}</th>
           </tr>
-          <tr>
-            <th scope="row">{{ review.comment }}</th>
+          <tr class="table-primary">
+            <th scope="row">Commented by: <br />{{ review.user }} on {{ review.published_date }}</th>
       </table>
 
       <!--To allow the edit and delete review buttons to show if it is submitted by the user only-->
@@ -74,7 +74,8 @@
       <a class="btn btn-primary" href="{% url 'edit_review' review.id %}" role="button">Edit Review</a>
       <a class="btn btn-primary" href="{% url 'delete_review' review.id %}" role="button">Delete Review</a> {% endif %}
 
-      <hr /> {% endfor %}
+      <hr />
+      <br /> {% endfor %}
     </div>
   </div>
 

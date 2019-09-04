@@ -6,14 +6,23 @@
 <!--Content for submit-recipe.html-->
 {% block content %}
 
+<!--Breadcrumb links-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'recipe_list' %}">Suggested Recipes</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }} details</a></li>
+        <li class="breadcrumb-item"><a href="#">{{ review.name }}</a></li>
+    </ol>
+</nav>
+
 <div class="recipe-form col-md-12">
-    <h3>Delete the Recipe: {{ review.name }}</h3>
+    <h3>Delete the Review: {{ review.name }}</h3>
     <hr />
     <form method = "POST">
         {% csrf_token %}
         <p>Are you sure you want to delete the review: {{ review.name }}</p>
-        <input type="submit" />
-        <a class="btn btn-primary" href="{% url 'recipe_list' %}" role="button">Cancel</a>
+        <button class="btn btn-primary" type="submit">Delete</button>
+        <a class="btn btn-primary" href="{% url 'recipe_details' recipe.id %}" role="button">Cancel</a>
         </div>
     </form>
 </div>
