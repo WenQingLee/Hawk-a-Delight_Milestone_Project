@@ -24,28 +24,86 @@ The premise of Hawk-a-Delight is:
 The goal in the design is to present data in a systematic approach that encourages first time learning
 
 The user stories considered are:
-* I want
+* I want to register for the website
+* I want to browse the available menu items available
+* I want to be able to order the menu items, view the items in a cart and purchase it online
+* I want users to be able to submit their recipes and suggest it in the menu
+* I want the users to be able to rate the recipes by adding reviews and to upvote the recipes
 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+A tree structure information architecture is used for the website as it reduces complexity and only reveals information as the user navigate and transverse up and down the tree.
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
+The color orange is predominately used in this website as it is an appetizing and trendy color. The logo is symmetrical to provide a sense of balance and blue for the users
 
-As a user type, I want to perform an action, so that I can achieve a goal.
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+To reduce cognitive overload, the user will also not be required to go beyond 5 clicks to get to their destination.
 
-Features
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
+The ER diagram, scope and wireframe can be found under the scope and skeleton folder.
 
-Existing Features
-Feature 1 - allows users X to achieve Y, by having them fill out Z
-...
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
 
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+## Features
 
-Features Left to Implement
-Another feature idea
-Technologies Used
+### Existing Features
+
+1. Home/Index Page
+   * Mobile Responsive Bar that allows easy navigation with different navigation links depending on whether the user is logged in or not for all the pages.
+   * Display image and registration form to prompt the user to create an account if they do not have one
+   * Mobile Responsive Testimonials by other users
+   * Footer that shows the company's address, email and opening hours in all pages
+ 
+2. Register/Login/Forgot your password pages (Links available in the nav bar when the user is not logged in)
+   * Relevant forms for the user to register, login and request for a new password
+
+3. Profile and Logout pages (only available when user is logged in)
+   * Allows the user to check their user details in profile and log out 
+   * A message will be shown if the user is successfully logged out
+
+4. Menu page
+   * Displays a list of menu dishes that are available to order
+   * Clicking the menu dishes will reveal more details such as description, prices and allow the users to add it to cart
+   * Breadcrumb links are provided below the nav bar for easy navigation
+   * A search field is provided for the user to search the existing menu dishes
+   * Adding the menu item to cart will show the total amount of items in the cart on the navigation bar
+   * Messages will be shown if the item has been successfully added to the cart or if there is an error.
+ 
+5. Suggest a dish > Submit Recipe page
+   *  A form will be shown for the user to submit the recipe, if successful, a message will be shown
+   *  Breadcrumb links are provided below the nav bar for easy navigation
+
+6. Suggest a dish > List of submitted recipes page
+   * It will show a list of user suggested recipes with a summary of the times viewed and the number of votes it has
+   * A search field is provided for the user to search the user submitted recipes
+   * It allows the user to click on the recipe for more details
+
+7. Recipe Details Page
+   * Breadcrumb links are provided below the nav bar for easy navigation
+   * It will show the recipe details such as the name, user that submitted, cooking time, date it was suggested, etc.
+   * It allows only the user who submitted the recipe to edit and delete the recipe
+   * Other users may upvote or review/comment on the recipe
+   * It will also show the reviews/comments by other users and is shown as a title, comment and commented by.
+   * A show/hide button to show or hide the reviews/comments by other users
+   * It allows only the user who submitted the review to edit and delete the review.
+
+8. Shopping Cart Page
+   * Breadcrumb links are provided below the nav bar for easy navigation
+   * It lists down the items added to the cart, quantity and total amount
+   * It allows the user to change the quantity of the menu items ordered
+   * It allows the user to check out the shopping cart
+   * Messages will be shown if the item quantity has been successfully adjusted or if there is an error.
+
+9. Check out Page
+   *  Breadcrumb links are provided below the nav bar for easy navigation
+   *  Billing information such as the items ordered, subtotals and total
+   *  Form for user to perform an online transaction using Stripe
+   *  Messages will be shown if user has successfully in making payment or if there is an error.
+
+### Features left to implement
+
+Due to scope creep and insufficient time, the following features have yet to be implemented:
+1. To be able to send a reset password email to the user when the user submits the form for forgot password.
+2. To limit the number of votes per user to only 1
+   
+
+## Technologies Used
+
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
 
 JQuery
@@ -204,6 +262,10 @@ Media
 The photos used in this site were obtained from ...
 Acknowledgements
 I received inspiration for this project from X
+
+Uploadcare
+whitenoise
+
 
  1. Django Tips: https://medium.com/@DoorDash/tips-for-building-high-quality-django-apps-at-scale-a5a25917b2b5 
  2. Website Design Theme: https://colorlib.com/wp/template/vegefoods/ 

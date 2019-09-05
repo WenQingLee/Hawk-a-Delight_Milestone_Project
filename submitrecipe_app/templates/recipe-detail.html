@@ -42,10 +42,10 @@
       <p>Recipe votes: {{ recipe.votes }}</p>
       <!--To only allow the user who submitted the recipe to edit or delete the recipe-->
       {% if recipe.user.id == user.id %}
-      <a class="btn btn-primary" href="{% url 'edit_recipe' recipe.id %}" role="button">Edit Recipe</a>
-      <a class="btn btn-primary" href="{% url 'delete_recipe' recipe.id %}" role="button">Delete Recipe</a> {% endif %}
-      <a class="btn btn-primary" href="{% url 'upvote_recipe' recipe.id %}" role="button"><i class="fas fa-vote-yea"></i> Upvote</a>
-      <a class="btn btn-primary" href="{% url 'submit_review' recipe.id %}" role="button">Comment on the recipe</a>
+      <a class="btn btn-primary m-2" href="{% url 'edit_recipe' recipe.id %}" role="button">Edit Recipe</a>
+      <a class="btn btn-primary m-2" href="{% url 'delete_recipe' recipe.id %}" role="button">Delete Recipe</a> {% endif %}
+      <a class="btn btn-primary m-2" href="{% url 'upvote_recipe' recipe.id %}" role="button"><i class="fas fa-vote-yea"></i> Upvote</a>
+      <a class="btn btn-primary m-2" href="{% url 'submit_review' recipe.id %}" role="button">Comment on the Recipe</a>
       <hr />
     </div>
 
@@ -53,9 +53,10 @@
     <div class="container">
       <div class="row">
         <div class="col text-center">
-          <button type="button" class="btn btn-info show-details">Show/hide comments</button>
+          <button type="button" class="btn btn-info show-details">Show/Hide comments</button>
         </div>
       </div>
+      <br />
     </div>
 
     <div class="reviews">
@@ -84,8 +85,8 @@
 
       <!--To allow the edit and delete review buttons to show if it is submitted by the user only-->
       {% if review.user.id == user.id %}
-      <a class="btn btn-primary" href="{% url 'edit_review' review.id %}" role="button">Edit Review</a>
-      <a class="btn btn-primary" href="{% url 'delete_review' review.id %}" role="button">Delete Review</a> {% endif %}
+      <a class="btn btn-primary" href="{% url 'edit_review' review.id %}" role="button">Edit Comment</a>
+      <a class="btn btn-primary" href="{% url 'delete_review' review.id %}" role="button">Delete Comment</a> {% endif %}
 
       <hr />
       <br /> {% endfor %}

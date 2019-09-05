@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 <!--Block title for register-->
 {% block title %}Register{% endblock %}
 
@@ -11,10 +13,10 @@
     <h2>User Registration</h2>
     <form method='POST'>
         <div class="form-group">
-            <table class="table">
-                {% csrf_token %} {{ form.as_table }}
-            </table>
-            <input type='submit' />
+                {% csrf_token %}
+                {{ form | crispy }}
+            <hr />
+            <input type="submit" />
         </div>
     </form>
     <p>If you already have an account, you can log in <a href="{% url 'login' %}">here</a></p>
