@@ -4,22 +4,22 @@ Full Stack Frameworks with Django Milestone Project
 
 ## Index
 
-1. Project Purpose
-2. UX
-3. Features
-4. Technologies Used
-5. Testing
-6. Deployment
-7. Credits
+1. [Project Purpose](#project-purpose)
+2. [UX](#ux)
+3. [Features](#features)
+4. [Technologies Used](#technologies-used)
+5. [Testing](#testing)
+6. [Deployment](#deployment)
+7. [Credits](#credits)
 
-## Project Purpose
+## <a name="project-purpose">Project Purpose</a>
 
 The premise of Hawk-a-Delight is:
 1. To allow users to order and pay for food dishes online
 2. To allow users to submit their own recipes to be included as part of the menu
 3. To allow users to comment and vote on the user submitted recipes
 
-## UX
+## <a name="ux">UX</a>
 
 The goal in the design is to present data in a systematic approach that encourages first time learning
 
@@ -39,7 +39,7 @@ To reduce cognitive overload, the user will also not be required to go beyond 5 
 The ER diagram, scope and wireframe can be found under the scope and skeleton folder.
 
 
-## Features
+## <a name="features">Features</a> 
 
 ### Existing Features
 
@@ -102,7 +102,7 @@ Due to scope creep and insufficient time, the following features have yet to be 
 2. To limit the number of votes per user to only 1
    
 
-## Technologies Used
+## <a name="technologies-used">Technologies Used</a>
 
 1. HTML (https://www.w3schools.com/html/html_intro.asp)
 2. CSS (https://www.w3schools.com/css/)
@@ -115,7 +115,7 @@ Due to scope creep and insufficient time, the following features have yet to be 
 9. PostgreSQL (https://www.postgresql.org/)
 10. Django (https://www.djangoproject.com/)
 
-## Testing
+## <a name="testing">Testing</a>
 
 Automated testing is conducted for the models found in "checkout_app" and "submitrecipe_app"
 
@@ -175,7 +175,7 @@ Manual Testing:
    *  Form for user to perform an online transaction using Stripe
    *  Messages will be shown if user has successfully in making payment or if there is an error.
 
-## Deployment
+## <a name="deployment">Deployment</a>
 
 The website has been deployed at https://hawkadelight.herokuapp.com/
 
@@ -241,7 +241,7 @@ The website has been deployed at https://hawkadelight.herokuapp.com/
 6. To run the application locally type "python3 manage.py runserver localhost:8080"
 
 
-## Credits
+## <a name="credits">Credits</a>
 
 ### Content
 1. The menu items were compiled from the website: https://www.authenticfoodquest.com/food-in-singapore
