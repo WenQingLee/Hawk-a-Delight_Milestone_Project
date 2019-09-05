@@ -26,7 +26,7 @@ SECRET_KEY = 'bw+p1^4&gow4#31e0cddxj^h5n!mkhts(+$e0%g8&ze447+2z='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["ea400fc2528049a7b05e6a1efa6e0317.vfs.cloud9.us-east-1.amazonaws.com", "postgres://vucyyvhfycgmxb:1bd0f091d5efd3e97312c85ca1ea71d4ee4f90e24085e660c6a7ade11fb2756a@ec2-54-83-201-84.compute-1.amazonaws.com:5432/dbq4fng5hfgj06"]
+ALLOWED_HOSTS = ["ea400fc2528049a7b05e6a1efa6e0317.vfs.cloud9.us-east-1.amazonaws.com", "hawkadelight.herokuapp.com"]
 
 
 # Application definition
