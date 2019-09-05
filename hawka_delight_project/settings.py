@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'bw+p1^4&gow4#31e0cddxj^h5n!mkhts(+$e0%g8&ze447+2z='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["ea400fc2528049a7b05e6a1efa6e0317.vfs.cloud9.us-east-1.amazonaws.com", "hawkadelight.herokuapp.com"]
 
