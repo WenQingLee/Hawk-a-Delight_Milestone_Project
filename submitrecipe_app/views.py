@@ -147,6 +147,7 @@ def edit_review(request, id):
         else:
             return render(request, "edit-review.html",{
                 'form':form,
+                'review':review,
                 'recipe':recipe,
             })
             
@@ -154,6 +155,7 @@ def edit_review(request, id):
     
     return render(request, "edit-review.html", {
         'form' : form,
+        'review': review,
         'recipe' : recipe,
     })
         

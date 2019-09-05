@@ -3,6 +3,7 @@ from restaurant_app.models import MenuItem
 
 # Create your models here.
 
+# To get user information for the order to fill up the order form
 class Order(models.Model):
     full_name = models.CharField(max_length=200, blank=False)
     phone_number = models.CharField(max_length=20, blank=False)
@@ -15,11 +16,10 @@ class Order(models.Model):
     date = models.DateField()
     
     def __str__(self):
-        return "{0}-{1}-{2}".format(self.id, self.date, self.fullname)
+        return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
         
 """
-Model that retrieves the order object, item object and quantity
-and return the quantity, name and price
+Model that retrieves the order details for th order form
 """
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)

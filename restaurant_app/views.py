@@ -5,19 +5,21 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+# To show all the menu items in the menu-item.html
 @login_required()
 def all_menu_items(request):
     all_menu_items = MenuItem.objects.all().order_by('name')
     return render(request, 'menu-items.html', {'all_menu_items':all_menu_items})
-    
+
+# To show the menu item details when selected    
 @login_required()
 def menu_item_detail(request, pk):
     menu_item_detail = get_object_or_404(MenuItem, pk=pk)
     return render(request, "menu-item-detail.html", {
         'menu_item_detail':menu_item_detail
     })
-    
+
+# To create a dropdown box to select the type of menu    
 @login_required()
 def menu_type(request, type):
     

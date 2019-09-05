@@ -1,17 +1,18 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+# Allows the user to check the contents of their cart
+@login_required()
 def view_cart(request):
-    # A view that renders the cart contents page
     return render(request, "cart.html")
     
+# Allows the user to add the menu item to their cart
+@login_required()
 def add_to_cart(request, id):
-    """
-    Add a quantity of the specified item to cart from the input
-    name, quantity, of menu-item.html in restaurant_app
-    """
+    
     quantity=int(request.POST.get('quantity'))
 
     cart=request.session.get('cart',{})
@@ -22,19 +23,14 @@ def add_to_cart(request, id):
     messages.success(request, "You have successsfully added the dish to your cart")
     
     return redirect(reverse('all_menu_items'))
-    
+
+# Allows the user to edit the quantity of menu item in their cart after adding
+@login_required()
 def adjust_cart(request, id):
-    """
-    Used to adjust the quantity of a specified item
-    """
+    
     quantity=int(request.POST.get('quantity'))
     cart=request.session.get('cart', {})
-    """
-    Adjusts the quantity of the item in the cart according to the property, id,
-    if it is greater than 0. There will be no item if the quantity
-    is 0 as it will be removed from the array. Note that id has to be converted
-    to a string as it was defined as an integer in the urls.py
-    """
+    
     if quantity>0:
         cart[id] = quantity
     else:

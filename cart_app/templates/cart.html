@@ -17,6 +17,7 @@
         </ol>
     </nav>
 
+    <!--To show the cart item names, price and quantity also allows the user to change the quantity-->
     <div class="container-fluid row">
 
         {% for item in cart_items %}
@@ -44,7 +45,7 @@
     </div>
     
 
-
+    <!--To show the total cost of the cart and link for the user to check out-->
     <div class="container-fluid text-center">
         <hr />
         <p>Total: {{ total }}</p>

@@ -12,6 +12,7 @@ from django.contrib import messages
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+# To allow the user to make payment and give messages if it is a success or there are errors
 @login_required()
 def checkout(request):
     if request.method=="POST":

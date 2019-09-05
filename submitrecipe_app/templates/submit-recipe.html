@@ -16,16 +16,14 @@
     </ol>
 </nav>
 
+<!--Form for users to suggest a recipe-->
 <div class="recipe-form col-md-12">
     <h3>Suggest a Recipe</h3>
     <hr />
     <form method = "POST" enctype="multipart/form-data">
         <div class="form-group">
-            <!--<table class="table">-->
                 {% csrf_token %}
                 {{ form | crispy }}
-                <!--{{ form.as_table }}-->
-            <!--</table>-->
             <hr />
             <input type="submit" />
         </div>

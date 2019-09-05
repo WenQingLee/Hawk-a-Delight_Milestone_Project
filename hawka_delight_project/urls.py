@@ -19,7 +19,6 @@ from django.views.generic import RedirectView
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 
-# Import settings for images in media/img folder to show when DEBUG = True
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -33,6 +32,6 @@ urlpatterns = [
     path('submit/', include('submitrecipe_app.urls'))
 ]
 
-# Import settings for images in media/img folder to show when DEBUG = True
+# Import settings for images to show when DEBUG = True
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

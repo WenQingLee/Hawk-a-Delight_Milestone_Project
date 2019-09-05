@@ -1,6 +1,7 @@
 from django import forms
 from .models import Order
 
+# Allows the user to key in their credit card information for validation
 class MakePaymentForm(forms.Form):
     
     MONTH_CHOICES = [(i, i) for i in range(1,13)]
@@ -11,7 +12,8 @@ class MakePaymentForm(forms.Form):
     expiry_month = forms.ChoiceField(label='Month', choices=MONTH_CHOICES, required=False)
     expiry_year = forms.ChoiceField(label='Year', choices=YEAR_CHOICES, required=False)
     stripe_id = forms.CharField(widget=forms.HiddenInput)
-    
+
+# Additional information for the user to fill up during payment    
 class OrderForm(forms.ModelForm):
     
     class Meta:

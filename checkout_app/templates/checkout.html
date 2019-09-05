@@ -3,7 +3,7 @@
 <!--Title for Checkout-->
 {% block title %}Checkout{% endblock %}
 
-<!--Javascript for checkout.html only-->
+<!--Javascript for stripe in checkout.html only-->
 {% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -67,6 +67,7 @@
 
         </div>
 
+        <!--Corresponding payment form-->
         <div class="col-xs-12 col-lg-6">
             <form role="form" method="POST" id="payment-form" action="{% url 'checkout' %}">
 
