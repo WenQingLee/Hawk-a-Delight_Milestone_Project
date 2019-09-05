@@ -11,7 +11,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'recipe_list' %}">Suggested Recipes</a></li>
         <li class="breadcrumb-item"><a href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }} details</a></li>
-        <li class="breadcrumb-item"><a href="#">{{ recipe.name }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ recipe.name }}</a></li>
     </ol>
 </nav>
 
