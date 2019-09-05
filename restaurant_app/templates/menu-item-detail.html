@@ -5,6 +5,9 @@
 
 <!--Content for menu items-->
 {% block content %}
+
+{{ form.media }}
+
 <section>
     <!--Breadcrumb links-->
     <nav aria-label="breadcrumb">
@@ -19,7 +22,7 @@
     <!--Details on the menu item selected-->
     <div class="container fluid row mx-auto">
         <div class="col-xl-6">
-            <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{menu_item_detail.image}}"></div>
+            <div class="item-image" style="background-image: url('{{menu_item_detail.image.cdn_url}}')"></div>
             <h3 class="text-center">{{ menu_item_detail.name }}</h3>
             <hr />
             <p class="item-description">{{ menu_item_detail.description }}</p>

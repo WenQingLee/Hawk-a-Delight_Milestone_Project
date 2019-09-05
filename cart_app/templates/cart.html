@@ -7,6 +7,8 @@
 
 {% block content %}
 
+{{ form.media }}
+
 <section>
 
     <!--Breadcrumb links-->
@@ -24,7 +26,7 @@
 
         <div class="card col-xl-2 col-md-3 m-4">
 
-            <img src="{{ MEDIA_URL }}{{item.item.image}}" class="card-img-top" alt="{{item.item.name}}">
+            <img src="{{item.item.image.cdn_url}}" class="card-img-top" alt="{{item.item.name}}">
             <div class="card-body">
                 <h5>{{ item.item.name }}</h5>
                 <p>$ {{ item.item.price }}</p>

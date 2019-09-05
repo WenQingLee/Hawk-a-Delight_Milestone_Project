@@ -5,6 +5,9 @@
 
 <!--Content for recipe-list.html-->
 {% block content %}
+
+{{ form.media }}
+
 <section>
     <!--Breadcrumb links-->
     <nav aria-label="breadcrumb">
@@ -39,7 +42,7 @@
             <!--If there are no recipe images, show the iamge not available instead-->
 
             {% if recipe.image %}
-            <img src="{{ MEDIA_URL }}{{recipe.image}}" class="card-img-top" alt="{{recipe.name}}"> 
+            <img src="{{recipe.image.cdn_url}}" class="card-img-top" alt="{{recipe.name}}"> 
             {% else %}
             <img src="/media/img/not-found/no-image-available.svg" class="card-img-top" alt="{{recipe.name}}" alt="No Image Here">
             {% endif %}

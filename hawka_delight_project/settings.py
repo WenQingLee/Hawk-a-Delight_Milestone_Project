@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cart_app',
     'checkout_app',
     'submitrecipe_app',
+    'pyuploadcare.dj',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +148,11 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DATABASES = {'default': dj_database_url.parse("postgres://vucyyvhfycgmxb:1bd0f091d5efd3e97312c85ca1ea71d4ee4f90e24085e660c6a7ade11fb2756a@ec2-54-83-201-84.compute-1.amazonaws.com:5432/dbq4fng5hfgj06")}
+
+UPLOADCARE_PUBLIC_KEY = os.getenv('UPLOADCARE_PUBLIC_KEY')
+UPLOADCARE_SECRET_KEY = os.getenv('UPLOADCARE_SECRET_KEY')
+
+UPLOADCARE = {
+    'pub_key': UPLOADCARE_PUBLIC_KEY,
+    'secret': UPLOADCARE_SECRET_KEY,
+}

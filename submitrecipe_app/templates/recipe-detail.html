@@ -5,6 +5,8 @@
 
 <!--Content for recipe-list.html-->
 {% block content %}
+
+{{ form.media }}
 <section>
   <!--Breadcrumb links-->
   <nav aria-label="breadcrumb">
@@ -20,7 +22,7 @@
     <!--Submitted Recipe Details-->
     <div>
       {% if recipe.image %}
-      <div class="item-image" style="background-image: url('{{ MEDIA_URL }}{{recipe.image}}"></div>
+      <div class="item-image" style="background-image: url('{{recipe.image.cdn_url}}"></div>
 
       {% else %}
       <div class="item-image" style="background-image: url('/media/img/not-found/no-image-available.svg"></div>
@@ -34,7 +36,7 @@
       <p>Submitted by: {{ recipe.user }}</p>
       <p>Ingredients: <br /> {{ recipe.ingredients }}</p>
       <p>Preparation steps: <br /> {{ recipe.preparation_steps }}</p>
-      <p>Cooking time: {{ recipe.duration }}</p>
+      <p>Cooking time (in mins): {{ recipe.duration }}</p>
       <p>Date suggested: {{ recipe.created_date }}</p>
       <p>No. of views: {{ recipe.views }}</p>
       <p>Recipe votes: {{ recipe.votes }}</p>
@@ -58,11 +60,10 @@
 
     <div class="reviews">
       <!--Submitted Recipe Comments-->
-      <h3>Comments on {{ recipe.name }}</h3>
+      <h3>Comments by users on {{ recipe.name }}</h3>
 
       <!--For loop for reviews-->
       {% for review in recipe_review %}
-
 
       <!--Table for recipe reviews-->
       <table class="table table-bordered">
@@ -77,6 +78,8 @@
           </tr>
           <tr class="table-primary">
             <th scope="row">Commented by: <br />{{ review.user }} on {{ review.published_date }}</th>
+          </tr>
+        </tbody>
       </table>
 
       <!--To allow the edit and delete review buttons to show if it is submitted by the user only-->

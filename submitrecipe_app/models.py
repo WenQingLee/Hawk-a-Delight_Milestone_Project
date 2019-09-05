@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from pyuploadcare.dj.models import ImageField
 
 # Create your models here.
 
@@ -14,7 +15,7 @@ class Recipe(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     views = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
-    image = models.ImageField(upload_to="images/", blank=True, null=True)
+    image = ImageField(blank=True, null=True)
     
     def __str__(self):
         return self.name

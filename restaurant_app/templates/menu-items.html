@@ -5,6 +5,9 @@
 
 <!--Content for menu items-->
 {% block content %}
+
+{{ form.media }}
+
 <section>
 
     <!--Breadcrumb links-->
@@ -49,7 +52,7 @@
         <div class="card col-xl-2 col-md-3 m-4">
             <a href="{% url 'menu_item_detail' item.id %}">
                 <br />
-                <img src="{{ MEDIA_URL }}{{item.image}}" class="card-img-top" alt="{{item.name}}">
+                <img src="{{item.image.cdn_url}}" class="card-img-top" alt="{{item.name}}">
                 <div class="card-body">
                     <p="card-title">{{ item.name }}</p>
                 </div>
