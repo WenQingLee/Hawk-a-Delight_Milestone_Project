@@ -4,3 +4,5 @@ __pycache__
 .pyc
 .~c9*
 env.py
+staticfiles/
+media/

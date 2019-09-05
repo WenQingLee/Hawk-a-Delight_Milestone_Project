@@ -10,7 +10,8 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'recipe_list' %}">List of Recipes</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{ recipe.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ recipe.name }}</a>
+      </li>
     </ol>
   </nav>
 
@@ -40,21 +41,29 @@
       <!--To only allow the user who submitted the recipe to edit or delete the recipe-->
       {% if recipe.user.id == user.id %}
       <a class="btn btn-primary" href="{% url 'edit_recipe' recipe.id %}" role="button">Edit Recipe</a>
-      <a class="btn btn-primary" href="{% url 'delete_recipe' recipe.id %}" role="button">Delete Recipe</a> 
-      {% endif %}
+      <a class="btn btn-primary" href="{% url 'delete_recipe' recipe.id %}" role="button">Delete Recipe</a> {% endif %}
       <a class="btn btn-primary" href="{% url 'upvote_recipe' recipe.id %}" role="button"><i class="fas fa-vote-yea"></i> Upvote</a>
       <a class="btn btn-primary" href="{% url 'submit_review' recipe.id %}" role="button">Comment on the recipe</a>
       <hr />
     </div>
 
-    <div>
+    <!--Button to show and hide comments-->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <button type="button" class="btn btn-info show-details">Show/hide comments</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews">
       <!--Submitted Recipe Comments-->
       <h3>Comments on {{ recipe.name }}</h3>
 
       <!--For loop for reviews-->
       {% for review in recipe_review %}
-      
-      
+
+
       <!--Table for recipe reviews-->
       <table class="table table-bordered">
         <thead>

@@ -13,31 +13,44 @@ def view_cart(request):
 @login_required()
 def add_to_cart(request, id):
     
-    quantity=int(request.POST.get('quantity'))
-
-    cart=request.session.get('cart',{})
-    cart[id]=cart.get(id, quantity)
+    if request.POST.get('quantity') != "":
     
-    request.session['cart']=cart
+        quantity=int(request.POST.get('quantity'))
     
-    messages.success(request, "You have successsfully added the dish to your cart")
+        cart=request.session.get('cart',{})
+        cart[id]=cart.get(id, quantity)
+        
+        request.session['cart']=cart
+        
+        messages.success(request, "You have successsfully added the dish to your cart")
+        
+        return redirect(reverse('menu_item_detail' , kwargs={'pk':id} ))
     
-    return redirect(reverse('all_menu_items'))
+    messages.success(request, "Please provide a value from 0 to 99 for the quantity of the dish")
+    
+    return redirect(reverse('menu_item_detail' , kwargs={'pk':id} ))
 
 # Allows the user to edit the quantity of menu item in their cart after adding
 @login_required()
 def adjust_cart(request, id):
     
-    quantity=int(request.POST.get('quantity'))
-    cart=request.session.get('cart', {})
-    
-    if quantity>0:
-        cart[id] = quantity
-    else:
-        cart.pop(str(id))
+        if request.POST.get('quantity') != "":
+            
+            quantity=int(request.POST.get('quantity'))
+            cart=request.session.get('cart', {})
         
-    request.session['cart'] = cart
-    return redirect(reverse('view_cart'))
+            if quantity>0:
+                cart[id] = quantity
+            else:
+                cart.pop(str(id))
+                
+            request.session['cart'] = cart
+            
+            return redirect(reverse('view_cart'))
+            
+        messages.success(request, "Please provide a value from 0 to 99 for the quantity of the dish")
+        
+        return redirect(reverse('view_cart'))
     
     
     

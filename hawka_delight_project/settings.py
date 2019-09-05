@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'hawka_delight_project.urls'
@@ -128,6 +130,7 @@ USE_TZ = True
 # All static files will be kept in the directory called static
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # All Media will be kept in the directory called media
 MEDIA_URL = "/media/"
@@ -142,3 +145,5 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DATABASES = {'default': dj_database_url.parse("postgres://vucyyvhfycgmxb:1bd0f091d5efd3e97312c85ca1ea71d4ee4f90e24085e660c6a7ade11fb2756a@ec2-54-83-201-84.compute-1.amazonaws.com:5432/dbq4fng5hfgj06")}

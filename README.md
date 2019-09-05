@@ -1,10 +1,31 @@
-# Hawka-Delight
+# Hawk-a-Delight
 
-One or two paragraphs providing an overview of your project.
+Full Stack Frameworks with Django Milestone Project
 
-Essentially, this part is your sales pitch.
+## Index
 
-UX
+1. Project Purpose
+2. UX
+3. Features
+4. Technologies Used
+5. Testing
+6. Deployment
+7. Credits
+
+## Project Purpose
+
+The premise of Hawk-a-Delight is:
+1. To allow users to order and pay for food dishes online
+2. To allow users to submit their own recipes to be included as part of the menu
+3. To allow users to comment and vote on the user submitted recipes
+
+## UX
+
+The goal in the design is to present data in a systematic approach that encourages first time learning
+
+The user stories considered are:
+* I want
+
 Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 
 In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
@@ -48,6 +69,125 @@ You should also mention in this section any interesting bugs or problems you dis
 If this section grows too long, you may want to split it off into a separate file and link to it from here.
 
 Deployment
+
+
+===
+
+In the terminal, type in the following:
+
+sudo apt install libpq-dev python3-dev
+
+Install the following using pip3:
+
+sudo pip3 install gunicorn
+sudo pip3 install psycopg2
+sudo pip3 install whitenoise
+
+Add Whitenoise to the middleware inside settings.py
+
+
+
+MIDDLEWARE = [
+'whitenoise.middleware.WhiteNoiseMiddleware'
+]
+
+
+Make sure to include the following settings for static files and uploads, if they are not there already:
+
+
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+Create a static folder in the workspace (where manage.py is) and create an empty text file inside there.
+
+
+Create a staticfiles folder in the workspace and create an empty text file inside there
+
+
+Create a media folder in the workspace and create an empty text file inside there.
+
+
+Remove media/ from the .gitignore file temporarily. (If you have added /media inside there).
+
+Create a static folder in the workspace (where manage.py is) and create an empty text file inside there.
+
+
+Create a staticfiles folder in the workspace and create an empty text file inside there
+
+
+Create a media folder in the workspace and create an empty text file inside there.
+
+
+Remove media/ from the .gitignore file temporarily. (If you have added /media inside there).
+
+Create the requirements.txt file using bash
+
+
+
+pip3 freeze --local > requirements.txt
+
+
+Create a local git repo for your project and connect it to a GitHub repo. Include the relevant .gitignore file.  
+
+
+sudo git init 
+sudo git add .
+sudo git commit -m "First commit"
+sudo git remote add origin <GITHUB REMOTE URL>
+sudo git push origin master
+
+Put staticfiles/  and media/ inside .gitignore
+
+
+Log into heroku by typing in heroku login and pressing ENTER
+
+
+
+Put staticfiles/  and media/ inside .gitignore
+
+Create an app ( do it via the command line, don't do it via the Heroku webpage). If you opt for the command line and the push to Heroku
+
+
+heroku create <PROJECT NAME> 
+git remote -v
+
+Type in:
+
+
+
+heroku addons:create heroku-postgresql
+
+
+
+Install with pip3:
+
+
+
+sudo pip3 install dj_database_url
+
+
+Add the URL to the database configurations inside settings.py
+
+
+
+# import at the top
+import dj_database_url
+# then...
+DATABASES = {'default': dj_database_url.parse(<DATABASE_URL_FROM_HEROKU>)}
+
+
+
+
+
+
+===
+
 This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
 
 In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
