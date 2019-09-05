@@ -1,0 +1,1 @@
+web: gunicorn hawka_delight_project.wsgi:application
