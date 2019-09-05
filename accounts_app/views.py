@@ -17,7 +17,7 @@ def index(request):
             if user is not None:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully signed up for an account")
-                return redirect(reverse('index'))
+                return redirect(reverse('all_menu_items'))
             else:
                 messages.error(request, "We are unable to create your account, please try again")
         else:
